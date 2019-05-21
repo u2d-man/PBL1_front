@@ -9,6 +9,6 @@ request.onload = function() {
     console.log(data);
 };
 
-let api_response = request.send('user_id=kmyan&password=opai1919');
+var api_response = request.send('user_id=kmyan&password=opai1919');
 
 document.write(api_response);
