@@ -3,32 +3,49 @@
   <head>
     <meta charset="UTF-8">
     <title>新規登録</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link rel="stylesheet" href="regist.css">
   </head>
   <body>
-    <form class="registcontainer" action="" method="post">
-      <div>
-        <span>ユーザーネーム：</span>
-        <input type="text" name="username">
+    <header>
+      <iframe src="header.html" width="100%" height="" frameborder="0"></iframe>
+    </header>
+    <div class="row jumbotron">
+      <div class="col-md-5 container">
+        <form action="" method="post" class="form-horizontal">
+          <div class="form-group">
+            <label for="input_name" class="col-md-4">ユーザーネーム：</label>
+            <input type="text" class="col-md-7" id="username" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="input_id" class="col-md-4">ユーザーID：</label>
+            <input type="text" class="col-md-7" id="userid" placeholder="Id">
+          </div>
+          <div class="form-group">
+            <label for="input_email" class="col-md-4">メールアドレス：</label>
+            <input type="email" class="col-md-7" id="email" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="input_password" class="col-md-4">パスワード：</label>
+            <input type="password" class="col-md-7" id="password" placeholder="Pass">
+          </div>
+          <div class="form-group">
+            <label for="input_confirmation" class="col-md-4">パスワード(確認)：</label>
+            <input type="password" class="col-md-7" id="password" placeholder="Confirmation">
+          </div>
+          <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+              <button type="submit" class="btn btn-primary btn-block">登録</button>
+            </div>
+            <div class="col-md-offset-2 col-md-5">
+              <a href="login.html">登録済みの方は</a>
+            </div>
+          </div>
+        </form>
       </div>
-      <div>
-        <span>ユーザーID：</span>
-        <input type="text" name="userid">
-      </div>
-      <div>
-        メールアドレス：
-        <span><input type="email" name="email"></span>
-      </div>
-      <div>
-        <span>パスワード：</span>
-        <input type="password" name="pass">
-      </div>
-      <div>
-        <span>パスワード(確認)：</span>
-        <input type="password" name="pass">
-      </div>
-      <div><input type="submit" value="新規登録"></div>
-      <a href="login.html">登録済みの方は</a>
-    </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
   </body>
 </html>
