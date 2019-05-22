@@ -1,0 +1,27 @@
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: #fffdf2
+}
+header {
+
+}
+.container {
+  display: flex;
+}
+.recipe-name {
+    width: 100%;
+}
+.recipe-photo {
+  width: 50%;
+}
+.recipe-ingredient {
+  width: 50%;
+}
+.recipe-text {
+  width: 100%;
+}
+
+body{
+
+}
