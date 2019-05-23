@@ -1,5 +1,4 @@
 function get_need_response(method, endpoint, option, send_data) {
-
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
