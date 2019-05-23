@@ -1,14 +1,24 @@
-var request = new XMLHttpRequest();
+function get_need_response(method, endpoint, option, send_data) {
 
-request.open('POST', 'http://localhost:8080/api/v1/auth/login', true);
-request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
-request.responseType = 'json';
+    // XMLHttpRequestオブジェクトを作成
+    var request = new XMLHttpRequest();
 
-request.onload = function() {
-    var data = this.response;
-    console.log(data);
-};
+    // Httpリクエストに必要な情報
+    request.open(method, endpoint);
+    request.setRequestHeader('content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+    request.responseType = 'json';
 
-let api_response = request.send('user_id=kmyan&password=opai1919');
+    // 実行
+    request.onload = function () {
+        var response_data = this.response;
+        console.log(response_data);
 
-document.write(api_response);
+        var choice_data = response_data[option];
+        console.log(choice_data);
+
+        return choice_data;
+    };
+
+    // Httpリクエストを送信(引数指定で特定の情報のみを送信)
+    request.send(send_data);
+}
