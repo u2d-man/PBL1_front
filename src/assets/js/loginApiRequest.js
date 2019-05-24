@@ -1,4 +1,4 @@
-function get_need_response(method, endpoint, option, send_data) {
+function get_login_response(method, endpoint, send_data) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -9,14 +9,13 @@ function get_need_response(method, endpoint, option, send_data) {
 
     // 実行
     request.onload = function () {
-        var from_database_response = this.response;
-        console.log(from_database_response);
+        var response_data = this.response;
+        console.log(response_data);
 
-        var choice_data = from_database_response[option];
-        console.log(choice_data);
+        var true_or_false = response_data['is_admin'];
+        console.log(true_or_false);
 
-        document.write(choice_data);
-        return choice_data;
+        return true_or_false;
     };
 
     // Httpリクエストを送信(引数指定で特定の情報のみを送信)
