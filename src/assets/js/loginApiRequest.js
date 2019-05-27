@@ -1,4 +1,4 @@
-function get_login_response(method, endpoint, send_data) {
+function get_login_info_response(method, endpoint, send_data) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -9,10 +9,10 @@ function get_login_response(method, endpoint, send_data) {
 
     // 実行
     request.onload = function () {
-        var response_data = this.response;
-        console.log(response_data);
+        var from_database_response = this.response;
+        console.log(from_database_response);
 
-        var true_or_false = response_data['is_admin'];
+        var true_or_false = from_database_response['is_admin'];
         console.log(true_or_false);
 
         return true_or_false;
