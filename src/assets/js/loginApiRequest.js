@@ -1,4 +1,4 @@
-function get_login_info_response(method, endpoint, send_data) {
+function get_login_info_response(method, endpoint, send_data, callback) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -8,16 +8,17 @@ function get_login_info_response(method, endpoint, send_data) {
     request.responseType = 'json';
 
     // 実行
-    request.onload = function () {
-        var from_database_response = this.response;
+    request.onload = function() {
+        from_database_response = this.response;
         console.log(from_database_response);
 
-        var true_or_false = from_database_response['is_admin'];
+        true_or_false = from_database_response['is_admin'];
         console.log(true_or_false);
 
-        return true_or_false;
+        callback(true_or_false)
     };
 
     // Httpリクエストを送信(引数指定で特定の情報のみを送信)
     request.send(send_data);
 }
+

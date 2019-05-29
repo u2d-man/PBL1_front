@@ -1,4 +1,4 @@
-function get_need_response(method, endpoint, option, send_data) {
+function get_need_response(method, endpoint, column, send_data) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -12,7 +12,7 @@ function get_need_response(method, endpoint, option, send_data) {
         var from_database_response = this.response;
         console.log(from_database_response);
 
-        var choice_data = from_database_response[option];
+        var choice_data = from_database_response[column];
         console.log(choice_data);
 
         document.write(choice_data);

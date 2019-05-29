@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns=http://www.w3.org/1999/xhtml>
 <head>
     <meta charset="UTF-8">
     <title>WebAPI test</title>
+
 </head>
 <body>
+<script src="../js/loginApiRequest.js"></script>
 <script>
-    var signinid = form.signInId.value;
-    signinid = form.signInId.value;
-    console.log(signinid);
+    function f() {
+        target = document.getElementById("output");
+        userid =  document.forms.test.inputId.value;
+        password = document.forms.test.inputPassword.value;
+        param = 'user_id=' + userid + '&' + 'password=' + password;
+        console.log(param);
+
+        get_login_info_response('POST', 'http://54.238.92.95:8080/api/v1/auth/login', param, function(true_or_false) {
+            isLoginFlag = true_or_false;
+            console.log(isLoginFlag);
+
+            if (isLoginFlag === true) {
+                document.location.href = 'test2.html';
+            } else {
+                document.location.href = 'test3.html';
+            }
+        });
+    }
 </script>
-<form action="test.php" method="post" class="form-signin">
+<form name="non" id="test" action="">
     <div class="form-label-group">
-        <input type="signIn" id="inputEmail" class="form-control" name="signInId" placeholder="Sign in ID" required autofocus>
+        <input type="text" id="inputId" class="form-control" name="_text" placeholder="Sign in ID" required autofocus>
         <label>sign in ID</label>
     </div>
 
@@ -21,9 +38,10 @@
         <label for="inputPassword">Password</label>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+    <button type="button" value="click" onclick="f()" class="btn btn-lg btn-primary btn-block text-uppercase" >Sign in</button>
     <hr class="my-4">
 </form>
+<div id="output"></div>
 <!--
 <h2>WebAPI</h2>
 <h3>リクエスト</h3>
