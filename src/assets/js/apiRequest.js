@@ -1,4 +1,4 @@
-function get_need_response(method, endpoint, column, send_data) {
+function get_need_response(method, endpoint, column, parameters, callback) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -9,16 +9,20 @@ function get_need_response(method, endpoint, column, send_data) {
 
     // 実行
     request.onload = function () {
-        var from_database_response = this.response;
-        console.log(from_database_response);
+        response_from_database = this.response;
+        // ステータスコードによって処理を変更
+        if (request.status === 401) {
+            alert("");
+            console.log(response_from_database);
+        } else if (request.status === 200) {
+            choice_data = response_from_database[column];
+            console.log(choice_data);
+        }
 
-        var choice_data = from_database_response[column];
-        console.log(choice_data);
-
-        document.write(choice_data);
-        return choice_data;
+        // document.write(choice_data);
+        callback(choice_data);
     };
 
     // Httpリクエストを送信(引数指定で特定の情報のみを送信)
-    request.send(send_data);
+    request.send(parameters);
 }

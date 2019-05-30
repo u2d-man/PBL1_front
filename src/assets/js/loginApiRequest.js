@@ -1,4 +1,4 @@
-function get_login_info_response(method, endpoint, send_data, callback) {
+function get_login_info_response(method, endpoint, parameters, callback) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -9,19 +9,20 @@ function get_login_info_response(method, endpoint, send_data, callback) {
 
     // 実行
     request.onload = function() {
-        from_database_response = this.response;
+        response_from_database = this.response;
+        // ステータスコードによって処理を変更
         if (request.status === 401) {
-            alert("IDかパスワードが違います。")
+            alert("IDかパスワードが違います。");
+            console.log(response_from_database);
+        } else if (request.status === 200) {
+            true_or_false = response_from_database['is_admin'];
+            console.log(true_or_false);
         }
-        console.log(from_database_response);
-
-        true_or_false = from_database_response['is_admin'];
-        console.log(true_or_false);
 
         callback(true_or_false)
     };
 
     // Httpリクエストを送信(引数指定で特定の情報のみを送信)
-    request.send(send_data);
+    request.send(parameters);
 }
 
