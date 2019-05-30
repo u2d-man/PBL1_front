@@ -10,7 +10,7 @@
     <script src="../js/loginApiRequest.js"></script>
 
     <script>
-        function f() {
+        function loginJudge() {
             target = document.getElementById("output");
             userid =  document.forms.test.inputId.value;
             password = document.forms.test.inputPassword.value;
@@ -24,8 +24,7 @@
                 if (isLoginFlag === true) {
                     document.location.href = 'home.html';
                 } else {
-                    // document.location.href = '../test/test3.html';
-                    window.print('ログインに失敗しました。')
+                    alert('IDかパスワードが違います。');
                 }
             });
         }
@@ -46,7 +45,7 @@
                             <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                             <label for="inputPassword">Password</label>
                         </div>
-                        <button type="button" onclick="f()" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
+                        <button type="button" onclick="loginJudge()" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
                         <hr class="my-4">
                 </div>
             </div>
