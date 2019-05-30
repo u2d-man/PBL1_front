@@ -22,9 +22,10 @@
                 console.log(isLoginFlag);
 
                 if (isLoginFlag === true) {
-                    document.location.href = '../test/test2.html';
+                    document.location.href = 'home.html';
                 } else {
-                    document.location.href = '../test/test3.html';
+                    // document.location.href = '../test/test3.html';
+                    window.print('ログインに失敗しました。')
                 }
             });
         }

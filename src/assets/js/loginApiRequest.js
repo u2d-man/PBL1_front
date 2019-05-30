@@ -10,6 +10,9 @@ function get_login_info_response(method, endpoint, send_data, callback) {
     // 実行
     request.onload = function() {
         from_database_response = this.response;
+        if (request.status === 401) {
+            alert("IDかパスワードが違います。")
+        }
         console.log(from_database_response);
 
         true_or_false = from_database_response['is_admin'];
