@@ -14,7 +14,7 @@ function get_need_response(method, endpoint, column, parameters, callback) {
         if (request.status === 401) {
             alert("");
             console.log(response_from_database);
-        } else if (request.status === 200) {
+        } else {
             choice_data = response_from_database[column];
             console.log(choice_data);
         }
