@@ -14,12 +14,11 @@ function get_need_response(method, endpoint, column, parameters, callback) {
         if (request.status === 401) {
             alert("");
             console.log(response_from_database);
-        } else {
+        } else if (request.status === 200) {
             choice_data = response_from_database[column];
             console.log(choice_data);
         }
 
-        // document.write(choice_data);
         callback(choice_data);
     };
 

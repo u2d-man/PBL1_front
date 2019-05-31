@@ -17,14 +17,13 @@
             parameters = 'user_id=' + userid + '&' + 'password=' + password;
             console.log(parameters);
 
-            get_need_response('POST', 'http://54.238.92.95:8080/api/v1/auth/login', parameters, 'is_admin', function(true_or_false) {
-                isLoginFlag = true_or_false;
+            get_need_response('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(choice_data) {
+                isLoginFlag = choice_data;
                 console.log(isLoginFlag);
 
                 if (isLoginFlag === true) {
                     document.location.href = 'home.html';
                 } else {
-                    // document.location.href = '../test/test3.html';
                     alert('ログインに失敗しました。')
                 }
             });
