@@ -35,8 +35,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/assets/html/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+            <state relative-caret-position="374">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -44,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/js/apiRequest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+            <state relative-caret-position="238">
+              <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -125,8 +125,8 @@
         <option value="$PROJECT_DIR$/src/assets/html/header.html" />
         <option value="$PROJECT_DIR$/src/assets/html/search.html" />
         <option value="$PROJECT_DIR$/src/assets/html/recipe.html" />
-        <option value="$PROJECT_DIR$/src/assets/html/login.html" />
         <option value="$PROJECT_DIR$/src/assets/js/apiRequest.js" />
+        <option value="$PROJECT_DIR$/src/assets/html/login.html" />
       </list>
     </option>
   </component>
@@ -233,7 +233,7 @@
       <updated>1558196760575</updated>
       <workItem from="1558196764186" duration="15906000" />
       <workItem from="1558584756125" duration="14400000" />
-      <workItem from="1558862147527" duration="32676000" />
+      <workItem from="1558862147527" duration="33198000" />
     </task>
     <task id="LOCAL-00001" summary="[update]ファイルの復元">
       <created>1559276440320</created>
@@ -246,7 +246,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62982000" />
+    <option name="totallyTimeSpent" value="63504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -449,15 +449,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/js/apiRequest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="238">
+          <caret line="14" column="32" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/html/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        <state relative-caret-position="374">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
