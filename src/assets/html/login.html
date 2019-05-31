@@ -15,7 +15,7 @@
             userid =  document.forms.test.inputId.value;
             password = document.forms.test.inputPassword.value;
             parameters = 'user_id=' + userid + '&' + 'password=' + password;
-            console.log(param);
+            console.log(parameters);
 
             get_login_info_response('POST', 'http://54.238.92.95:8080/api/v1/auth/login', parameters, 'is_admin', function(true_or_false) {
                 isLoginFlag = true_or_false;
