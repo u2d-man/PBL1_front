@@ -2,23 +2,42 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+</head>
 <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../js/apiRequest.js"></script>
+
+    <script>
+        function loginJudge() {
+            target = document.getElementById("output");
+            userid =  document.forms.test.inputId.value;
+            password = document.forms.test.inputPassword.value;
+            parameters = 'user_id=' + userid + '&' + 'password=' + password;
+            console.log(parameters);
+
+            get_need_response('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(true_or_false) {
+                isLoginFlag = true_or_false;
+                console.log(isLoginFlag);
+
+                if (isLoginFlag === true) {
+                    document.location.href = 'home.html';
+                } else {
+                    alert('IDかパスワードが違います。');
+                }
+            });
+        }
+    </script>
+<form name="non" id="test">
 <div class="container">
     <div class="row">
         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Welcome!</h5>
-                    <form action="../php/loginApiRequest.php" method="post" class="form-signin">
                         <div class="form-label-group">
-                            <input type="signIn" id="inputEmail" class="form-control" name="signInId" placeholder="Sign in ID" required autofocus>
+                            <input type="signIn" id="inputId" class="form-control" name="signInId" placeholder="Sign in ID" required autofocus>
                             <label>sign in ID</label>
                         </div>
 
@@ -26,14 +45,13 @@
                             <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                             <label for="inputPassword">Password</label>
                         </div>
-
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        <button type="button" onclick="loginJudge()" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
                         <hr class="my-4">
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</form>
 </body>
 </html>
