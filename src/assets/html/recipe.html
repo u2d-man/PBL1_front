@@ -1,61 +1,86 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="utf-8">
-        <title>レシピ部(結合前)</title>
-        <style>
-            table{
-                border: 3px silver solid;
-                border-collapse: collapse;
-                border-left: none;
-                border-right: none;
-            }
-            td{
-                border: 3px silver solid;
-                border-collapse: collapse;
-                border-left: none;
-                border-right: none;
-            }
-            th{
-                border: 3px silver solid;
-                border-collapse: collapse;
-                border-left: none;
-                border-right: none;
-            }
-        </style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <head>
+    <meta charset="utf-8">
+    <title>テスト</title>
+    <!-- jQuery -->
+    <script src="../js/jquery-2.0.0.min.js" type="text/javascript"></script>
+    <!-- Bootstrap4 files-->
+    <script src="../js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css"/>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    </head>
-    <body>
-        <div style = "background-color: #fffdf2">
-        <font size = "6">&emsp;作り方</font>
-        <br>
-        <table>
-            <tr>
-                <th><font size = "5">&emsp;1.&emsp;</font></th>
-                <td>サーモンを一口大に切り、サーモンの水気を拭き取り、両面塩胡椒します。<br>
-                    小麦粉をふり粉が付きすぎたら軽くはたきおとします。
-                </td>
-            </tr>
-            <tr>
-                <th><font size = "5">&emsp;2.&emsp;</font></th>
-                <td>フライパンにオリーブオイルを入れ、サーモンを中弱火で両面焼きます。</td>
-            </tr>
-            <tr>
-                <th><font size = "5">&emsp;3.&emsp;</font></th>
-                <td> ボウルにゆで卵の白身のみじん切り、黄身、玉ねぎのみじん切りを入れ、酢、レモン果汁、マヨネーズを入れ混ぜます。</td>
-            </tr>
-            <tr>
-                <th><font size = "5">&emsp;4.&emsp;</font></th>
-                <td> 焼き上がったサーモンムニエルにタルタルソースを添えます。</td>
-            </tr>
-        </table>
-        <br>
-        </div>
-    </body>
-    </div>
+    <!-- Font awesome 5 -->
+    <link href="../css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+
+    <!-- plugin: fancybox  -->
+    <script src="../js/fancybox.min.js" type="text/javascript"></script>
+    <link href="../css/fancybox.min.css" type="text/css" rel="stylesheet">
+
+    <!-- plugin: owl carousel  -->
+    <link href="../css/owl.carousel.min.css" rel="stylesheet">
+    <link href="../css/owl.theme.default.css" rel="stylesheet">
+    <script src="../js/owl.carousel.min.js"></script>
+
+    <!-- custom style -->
+    <link href="../css/ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+    <!-- custom javascript -->
+    <script src="../js/script.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      /// some script
+      // jquery ready start
+      $(document).ready(function() {
+      // jQuery code
+      }); 
+      // jquery end
+    </script>
+  </head>
+  <body>
+    <section class="section-content bg padding-y-sm">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-10 col-md-9 col-sm-12">
+            <main class="card">
+              <div class="row no-gutters">
+                <aside class="col-sm-6 border-right">
+                  <article class="gallery-wrap">
+                    <div class="img-big-wrap">
+                      <div> <a href="images/items/1.jpg" data-fancybox=""><img src="images/items/1.jpg"></a></div>
+                    </div> <!-- slider-product.// -->
+                  </article> <!-- gallery-wrap .end// -->
+                </aside>
+                <aside class="col-sm-6">
+                  <article class="card-body">
+                    <!-- short-info-wrap -->
+                    <h3 class="title mb-3">鮭のムニエル</h3>
+                    <div class="mb-3">
+                    <var class="price h3">
+                      <span class="currency">材料</span>
+                    </var>
+                    <form style="display: inline">
+                      <script type="text/javascript" src="../js/apiRequest.js"></script>
+                      <span onload="get_need_response('GET', 'http://localhost:8080/api/vi/reci    pe/1',,)"></span>
+                    </form>
+                    <input type="button" onClick="location.href=''" value="購入"><hr>
+                  </article> <!-- card-body.// -->
+                </aside> <!-- col.// -->
+              </div> <!-- row.// -->
+            </main> <!-- card.// -->
+            <!-- PRODUCT DETAIL -->
+            <article class="card mt-3">
+              <div class="card-body">
+                <h4>作り方</h4><hr>
+                <span>1.</span><p>サーモンを一口大に切り、サーモンの水気を拭き取ります。両面塩胡椒します。小麦粉をふり、粉が付きすぎたら軽くはたき落とします。</p><hr>
+                <span>2.</span><p>フライパンにオリーブオイルを入れ、サーモンを中〜弱火で両面焼きます。</p><hr>
+                <span>3.</span><p>ボウルにゆで卵の白身のみじん切り、黄身、玉ねぎのみじん切りを入れ、酢、レモン果汁、マヨネーズを入れ混ぜます。</p><hr>
+                <span>4.</span><p>焼き上がったサーモンムニエルにタルタルソースを添えます</p><hr>
+              </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+          </div>
+        </div> <!-- row.// -->
+      </div><!-- container // -->
+    </section>
+  </body>
 </html>
