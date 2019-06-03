@@ -3,48 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="f67769fb-d1a9-4fbd-ab74-2013bc09ba52" name="Default Changelist" comment="[update]ファイルの復元">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/html/cart.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/html/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/html/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/html/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/NoImage.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/NoImage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/bookmark.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/bookmark.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/carticon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/carticon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/user.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/user.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/カレー.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/カレー.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/トムヤムクン.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/トムヤムクン.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/ビーフストロガノフ.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/ビーフストロガノフ.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/ピロシキ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/ピロシキ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/フォー.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/フォー.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/プラーフ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/プラーフ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/ペリメニ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/ペリメニ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/その他/ボルシチ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/その他/ボルシチ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/乾焼蝦仁.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/乾焼蝦仁.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/八宝菜.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/八宝菜.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/回鍋肉.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/回鍋肉.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/炒飯.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/炒飯.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/酢豚.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/酢豚.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/酸辣湯.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/酸辣湯.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/青椒肉絲.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/青椒肉絲.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/中華/麻婆豆腐.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/中華/麻婆豆腐.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/おでん.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/おでん.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/すき焼き.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/すき焼き.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/唐揚げ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/唐揚げ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/天ぷら.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/天ぷら.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/炊き込みご飯.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/炊き込みご飯.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/肉じゃが.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/肉じゃが.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/鰤照り焼き.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/鰤照り焼き.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/和食/鱧の天ぷら.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/和食/鱧の天ぷら.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/アヒージョ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/アヒージョ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/エビフライ.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/エビフライ.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/クラムチャウダー.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/クラムチャウダー.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/グラタン.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/グラタン.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/スターゲイジーパイ.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/スターゲイジーパイ.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/デミグラスオムライス.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/デミグラスオムライス.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/ナポリタン.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/ナポリタン.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/ハヤシライス.JPG" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/ハヤシライス.JPG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/フィッシュアンドチップス.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/フィッシュアンドチップス.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/image/洋食/鮭のムニエル.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/images/洋食/鮭のムニエル.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/bootstrap.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/bootstrap.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/fancybox.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/fontawesome-all.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/ingredient.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/owl.carousel.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/owl.theme.default.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/recipe-detail.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/responsive.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/responsive.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/ui.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/css/ui.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/bootstrap.bundle.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/fancybox.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/jquery-2.0.0.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/owl.carousel.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/js/script.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/src/assets/html/home.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#section#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -88,8 +65,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/html/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+            <state relative-caret-position="198">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/assets/js/apiRequest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -97,19 +83,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/html/recipe.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+            <state relative-caret-position="442">
+              <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#1311#1317#0" expanded="true" />
-                <element signature="e#1411#1417#0" expanded="true" />
-                <element signature="e#1419#1425#0" expanded="true" />
-                <element signature="e#1637#1643#0" expanded="true" />
-                <element signature="e#1645#1651#0" expanded="true" />
-                <element signature="e#1795#1801#0" expanded="true" />
-                <element signature="e#1803#1809#0" expanded="true" />
-                <element signature="e#1975#1981#0" expanded="true" />
-                <element signature="e#1983#1989#0" expanded="true" />
+                <element signature="n#style#0;n#form#0;n#div#0;n#article#0;n#aside#1;n#div#0;n#main#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -127,30 +104,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/assets/html/cart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
+            <state relative-caret-position="5049">
               <caret line="297" column="54" selection-start-line="297" selection-start-column="54" selection-end-line="297" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/assets/html/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#nav#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#nav#1;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/assets/js/apiRequest.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -196,8 +151,6 @@
         <option value="$PROJECT_DIR$/src/assets/html/purchase.html" />
         <option value="$PROJECT_DIR$/src/assets/js/loginApiRequest.js" />
         <option value="$PROJECT_DIR$/src/assets/html/recipe.html" />
-        <option value="$PROJECT_DIR$/src/assets/js/apiRequest.js" />
-        <option value="$PROJECT_DIR$/src/assets/html/login.html" />
         <option value="$PROJECT_DIR$/src/assets/html/bootstrap_html/template.html" />
         <option value="$PROJECT_DIR$/src/assets/html/header2.html" />
         <option value="$PROJECT_DIR$/src/assets/css/bootstrap_css/bootstrap.css" />
@@ -206,6 +159,8 @@
         <option value="$PROJECT_DIR$/src/assets/html/search.html" />
         <option value="$PROJECT_DIR$/src/assets/html/cart.html" />
         <option value="$PROJECT_DIR$/src/assets/html/home.html" />
+        <option value="$PROJECT_DIR$/src/assets/js/apiRequest.js" />
+        <option value="$PROJECT_DIR$/src/assets/html/login.html" />
       </list>
     </option>
   </component>
@@ -249,23 +204,6 @@
               <item name="front" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="bootstrap_css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="bootstrap_css" type="462c0819:PsiDirectoryNode" />
-              <item name="bootstrap.css" type="620a8d5e:NestingTreeNode" />
-            </path>
-            <path>
-              <item name="front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="html" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -281,14 +219,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="front" type="b2602c69:ProjectViewProjectNode" />
-              <item name="front" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="bootstrap_js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -345,7 +275,7 @@
       <workItem from="1558196764186" duration="15906000" />
       <workItem from="1558584756125" duration="14400000" />
       <workItem from="1558862147527" duration="39369000" />
-      <workItem from="1559484039224" duration="7437000" />
+      <workItem from="1559484039224" duration="9630000" />
     </task>
     <task id="LOCAL-00001" summary="[update]ファイルの復元">
       <created>1559276440320</created>
@@ -358,11 +288,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77112000" />
+    <option name="totallyTimeSpent" value="79305000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25767368" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -502,13 +431,6 @@
     <entry file="file://$PROJECT_DIR$/src/assets/plugins/prism/prism.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/js/apiRequest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/js/bootstrap_js/jquery-2.0.0.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -535,13 +457,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/html/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/html/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="649">
@@ -556,36 +471,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/html/recipe.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="10" lean-forward="true" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#1311#1317#0" expanded="true" />
-            <element signature="e#1411#1417#0" expanded="true" />
-            <element signature="e#1419#1425#0" expanded="true" />
-            <element signature="e#1637#1643#0" expanded="true" />
-            <element signature="e#1645#1651#0" expanded="true" />
-            <element signature="e#1795#1801#0" expanded="true" />
-            <element signature="e#1803#1809#0" expanded="true" />
-            <element signature="e#1975#1981#0" expanded="true" />
-            <element signature="e#1983#1989#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/assets/html/cart.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="297" column="54" selection-start-line="297" selection-start-column="54" selection-end-line="297" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/html/home.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#section#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -601,14 +490,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/html/recipe.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="n#style#0;n#form#0;n#div#0;n#article#0;n#aside#1;n#div#0;n#main#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/html/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding>
             <element signature="n#style#0;n#nav#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#nav#1;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/html/cart.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5049">
+          <caret line="297" column="54" selection-start-line="297" selection-start-column="54" selection-end-line="297" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="6172" column="10" selection-start-line="6172" selection-start-column="10" selection-end-line="6172" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/html/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/assets/js/apiRequest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
