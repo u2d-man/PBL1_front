@@ -12,7 +12,7 @@ function get_need_response(method, endpoint, column, parameters, callback) {
         response_from_database = this.response;
         // ステータスコードによって処理を変更
         if (request.status === 401) {
-            alert("IDかパスワードが違います");
+            alert("リクエストデータが見つかりません");
             console.log(response_from_database);
         } else if (request.status === 200) {
             choice_data = response_from_database[column];
