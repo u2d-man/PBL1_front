@@ -7,7 +7,6 @@
     recipenum = 2;
     recipeurl = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
   </script>
-  
 
   <!--<title>RECIPE</title>-->
   <!-- jQuery -->
@@ -48,27 +47,39 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="../js/apiRequest.js"></script>
-<script>get_need_response('GET',recipeurl,'','',function(data){
-  document.title = data.recipe_name;
+<script>
+  // レシピの材料を表示させる処理
+  get_need_response('GET',recipeurl,'','',function(data){
+    document.title = data.recipe_name;
 
-  recipe_name = data.recipe_name;
-  var docname = document.getElementById("recipe_name");
-  docname.innerHTML= recipe_name;
+    recipe_name = data.recipe_name;
+    var docname = document.getElementById("recipe_name");
+    docname.innerHTML= recipe_name;
 
-  recipe_image_url = data.recipe_image_url;
-  var docimg = document.getElementById("recipe_image");
-  docimg.onload = function(){}
-  docimg.src = recipe_image_url;
+    recipe_image_url = data.recipe_image_url;
+    var docimg = document.getElementById("recipe_image");
+    docimg.onload = function(){}
+    docimg.src = recipe_image_url;
 
-  recipe_Ingredients = data.recipe_Ingredients;
-  food_ingredient = '<hr>';
-  recipe_Ingredients.forEach(function( ingredient ){
-    food_ingredient = food_ingredient + '<table border="0" width="300"><tr><td width="50%">・' + ingredient.food_name +
-            '</td><td width="10%"></td><td width="40%" align="center">' + ingredient.quantity + '</td></tr></table><hr>';
-  });
-  var docing = document.getElementById("recipe_ingredient");
-  docing.innerHTML= food_ingredient;
+    recipe_Ingredients = data.recipe_Ingredients;
+    food_ingredient = '<hr>';
+    recipe_Ingredients.forEach(function( ingredient ){
+      food_ingredient = food_ingredient + '<table border="0" width="300"><tr><td width="50%">・' + ingredient.food_name +
+              '</td><td width="10%"></td><td width="40%" align="center">' + ingredient.quantity + '</td></tr></table><hr>';
+    });
+    var docing = document.getElementById("recipe_ingredient");
+    docing.innerHTML= food_ingredient;
+    // レシピの材料を表示させる処理終了
+
+  function add_to_cart() {
+    /* ログインしているユーザーを判定して,user_idを渡し,ログインしていたらそのユーザー
+    のカートに対して材料を追加する
+    */
+
+  }
 });
+
+
 </script>
 
 <section class="section-content bg padding-y-sm">
