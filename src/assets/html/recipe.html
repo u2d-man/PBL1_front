@@ -48,19 +48,23 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="../js/apiRequest.js"></script>
 <script>
-  // レシピの材料を表示させる処理
   get_need_response('GET',recipeurl,'','',function(data){
+    // レシピの名前を表示させる処理
     document.title = data.recipe_name;
 
     recipe_name = data.recipe_name;
     var docname = document.getElementById("recipe_name");
     docname.innerHTML= recipe_name;
+    // レシピの名前を表示させる処理終了
 
+    // レシピの画像を表示させる処理
     recipe_image_url = data.recipe_image_url;
     var docimg = document.getElementById("recipe_image");
     docimg.onload = function(){}
     docimg.src = recipe_image_url;
+    // レシピの画像を表示させる処理終了
 
+    // レシピの材料を表示させる処理
     recipe_Ingredients = data.recipe_Ingredients;
     food_ingredient = '<hr>';
     recipe_Ingredients.forEach(function( ingredient ){
@@ -70,6 +74,25 @@
     var docing = document.getElementById("recipe_ingredient");
     docing.innerHTML= food_ingredient;
     // レシピの材料を表示させる処理終了
+
+    // レシピの作り方を表示させる処理終了
+    food_process = '<hr>';
+    pronum = 0;
+
+    pronum += 1;
+    food_process = food_process + pronum + '.　' + '作り方1<hr>';
+    pronum += 1;
+    food_process = food_process + pronum + '.　' + '作り方2<hr>';
+    /*
+    recipe_process = data.recipe_process;
+    recipe_process.forEach(function( rprocess ){
+      pronum += 1;
+      food_process = food_process + pronum + '.' + rprocess.prosess +'<hr>';
+    });
+    */
+    var docpro = document.getElementById("recipe_process");
+    docpro.innerHTML= food_process;
+    // レシピの作り方を表示させる処理終了
 
   function add_to_cart() {
     /* ログインしているユーザーを判定して,user_idを渡し,ログインしていたらそのユーザー
@@ -127,10 +150,10 @@
         <article class="card mt-3">
           <div class="card-body">
             <h4>作り方</h4><hr>
-            <span>1.</span><p>サーモンを一口大に切り、サーモンの水気を拭き取ります。両面塩胡椒します。小麦粉をふり、粉が付きすぎたら軽くはたき落とします。</p><hr>
-            <span>2.</span><p>フライパンにオリーブオイルを入れ、サーモンを中〜弱火で両面焼きます。</p><hr>
-            <span>3.</span><p>ボウルにゆで卵の白身のみじん切り、黄身、玉ねぎのみじん切りを入れ、酢、レモン果汁、マヨネーズを入れ混ぜます。</p><hr>
-            <span>4.</span><p>焼き上がったサーモンムニエルにタルタルソースを添えます</p><hr>
+
+              <!-- レシピ作り方表示 -->
+              <div id="recipe_process"></div>
+
           </div> <!-- card-body.// -->
         </article> <!-- card.// -->
       </div>
