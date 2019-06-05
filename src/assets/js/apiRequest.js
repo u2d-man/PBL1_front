@@ -1,5 +1,5 @@
 function get_need_response(method, endpoint, key, parameters, callback) {
-    // XMLHttpRequestオブジェクトを作成
+    // XMLHttpRequestコンストラクタを作成
     var request = new XMLHttpRequest();
 
     // Httpリクエストに必要な情報
