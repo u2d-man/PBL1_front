@@ -1,4 +1,4 @@
-function get_need_response(method, endpoint, column, parameters, callback) {
+function get_need_response(method, endpoint, key, parameters, callback) {
     // XMLHttpRequestオブジェクトを作成
     var request = new XMLHttpRequest();
 
@@ -14,8 +14,10 @@ function get_need_response(method, endpoint, column, parameters, callback) {
         if (request.status === 401) {
             alert("リクエストデータが見つかりません");
             console.log(response_from_database);
+        } else if (key === '') {
+            console.log("PROPERTY NONSENSE");
         } else if (request.status === 200) {
-            choice_data = response_from_database[column];
+            choice_data = response_from_database[key];
             console.log(choice_data);
         }
 
