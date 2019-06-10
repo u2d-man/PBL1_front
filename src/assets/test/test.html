@@ -7,6 +7,7 @@
 <body>
 <script src="../js/apiRequest.js"></script>
 <script>
+    /*
     function f() {
         target = document.getElementById("output");
         userid =  document.forms.test.inputId.value;
@@ -18,13 +19,20 @@
             isLoginFlag = choice_data;
             console.log(isLoginFlag);
 
-            /*
+
             if (isLoginFlag === true) {
                 document.location.href = '../test/test2.html';
             } else {
                 document.location.href = '../test/test3.html';
             }
-             */
+
+        });
+    }
+    */
+    function f() {
+        get_need_response('GET', 'https://9b199e13.prtimes.tech/movies/1', 'data["company_id"]', null, function (choice_data) {
+            console.log(choice_data);
+
         });
     }
 </script>
