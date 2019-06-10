@@ -33,12 +33,15 @@
 $(document).ready(function() {
 	// jQuery code
 
-}); 
+});
 // jquery end
 </script>
-
 </head>
 <body>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="../js/apiRequest.js"></script>
+
 <header class="section-header">
 	<nav class="navbar navbar-top navbar-expand-lg navbar-dark bg-secondary">
 		<div class="container">
@@ -104,7 +107,6 @@ $(document).ready(function() {
 	</section> <!-- header-main .// -->
 	</header> <!-- section-header.// -->
 
-
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content bg padding-y border-top">
 <div class="container">
@@ -112,202 +114,69 @@ $(document).ready(function() {
 <div class="row">
 	<main class="col-sm-9">
 
-<div class="card">
-<table class="table table-hover shopping-cart-wrap">
-<thead class="text-muted">
-<tr>
-  <th scope="col">Product</th>
-  <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Price</th>
-  <th scope="col" class="text-right" width="200">Action</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td>
-<figure class="media">
-	<div class="img-wrap"><img src="images/items/1.jpg" class="img-thumbnail img-sm"></div>
-	<figcaption class="media-body">
-		<h6 class="title text-truncate">Product name goes here </h6>
-		<dl class="dlist-inline small">
-		  <dt>Size: </dt>
-		  <dd>XXL</dd>
-		</dl>
-		<dl class="dlist-inline small">
-		  <dt>Color: </dt>
-		  <dd>Orange color</dd>
-		</dl>
-	</figcaption>
-</figure> 
-	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">USD 145</var> 
-			<small class="text-muted">(USD5 each)</small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-outline-success" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-	<a href="" class="btn btn-outline-danger"> × Remove</a>
-	</td>
-</tr>
-<tr>
-	<td>
-<figure class="media">
-	<div class="img-wrap"><img src="images/items/2.jpg" class="img-thumbnail img-sm"></div>
-	<figcaption class="media-body">
-		<h6 class="title text-truncate">Product name goes here </h6>
-		<dl class="dlist-inline small">
-		  <dt>Size: </dt>
-		  <dd>XXL</dd>
-		</dl>
-		<dl class="dlist-inline small">
-		  <dt>Color: </dt>
-		  <dd>Orange color</dd>
-		</dl>
-	</figcaption>
-</figure> 
-	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">USD 35</var> 
-			<small class="text-muted">(USD10 each)</small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-outline-success" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-	<a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
-	</td>
-</tr>
-<tr>
-	<td>
-<figure class="media">
-	<div class="img-wrap"><img src="images/items/3.jpg" class="img-thumbnail img-sm"></div>
-	<figcaption class="media-body">
-		<h6 class="title text-truncate">Product name goes here </h6>
-		<dl class="dlist-inline small">
-		  <dt>Size: </dt>
-		  <dd>XXL</dd>
-		</dl>
-		<dl class="dlist-inline small">
-		  <dt>Color: </dt>
-		  <dd>Orange color</dd>
-		</dl>
-	</figcaption>
-</figure> 
-	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">USD 45</var> 
-			<small class="text-muted">(USD15 each)</small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-		<a data-original-title="Save to Wishlist" title="" href="" class="btn btn-outline-success" data-toggle="tooltip"> <i class="fa fa-heart"></i></a> 
-		<a href="" class="btn btn-outline-danger btn-round"> × Remove</a>
-	</td>
-</tr>
-</tbody>
-</table>
-</div> <!-- card.// -->
+		<div id="cart_card"></div>
 
 	</main> <!-- col.// -->
 	<aside class="col-sm-3">
 
-		<dl class="dlist-align">
-  <dt>Total price: </dt>
-  <dd class="text-right">USD 568</dd>
-</dl>
-<dl class="dlist-align">
-  <dt>Discount:</dt>
-  <dd class="text-right">USD 658</dd>
-</dl>
 <dl class="dlist-align h4">
-  <dt>Total:</dt>
-  <dd class="text-right"><strong>USD 1,650</strong></dd>
+  <dt>合計：</dt>
+  <dd class="text-right"><strong><div>〇〇Ｐ</div></strong></dd>
 </dl>
 <hr>
+<dl class="dlist-align h4">
+  <dt>合計：</dt>
+  <dd class="text-right"><strong><div>〇〇円</div></strong></dd>
+</dl>
+<hr>
+
 	</aside> <!-- col.// -->
 </div>
 
 </div> <!-- container .//  -->
 </section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name bg-white padding-y">
-<div class="container">
-<header class="section-heading">
-<h2 class="title-section">Section name</h2>
-</header><!-- sect-heading -->
-
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
-
-<!-- ========================= SECTION  ========================= -->
-<section class="section-name bg padding-y">
-<div class="container">
-<h4>Another section if needed</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div><!-- container // -->
-</section>
-<!-- ========================= SECTION  END// ========================= -->
-
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer bg-secondary">
-			<br>
-		</section>
-		<section class="footer-bottom row border-top-white">
-			<div class="col-sm-6"> 
-				<p class="text-white-50"> Made with C.</p>
-			</div>
-			<div class="col-sm-6 text-right">
-				<p class="text-sm-right text-white-50">
-	Copyright &copy 2018 <br>
-<a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
-				</p>
-			</div>
-		</section> <!-- //footer-top -->
-	</div><!-- //container -->
-</footer>
-<!-- ========================= FOOTER END // ========================= -->
-
+<script>
+		get_need_response('GET','','','',function(data){
+			num = 1;
+			cart = '';
+			/*recipe_Ingredients.forEach(function( ingredient ){
+				recipe_name = data.recipe_name;
+				recipe_image_url = data.recipe_image_url;
+				recipe_price = data.recipe_price;
+				recipe_point = data.recipe_point;
+				recipe_item_Ingredients = data.recipe_Ingredients;
+				recipe_item_quantity = data.recipe_quantity;
+			*/
+				recipe_name = "芋";
+				recipe_image_url = "";
+				recipe_price = "100";
+				recipe_point = "100";
+				recipe_item_Ingredients = "芋";
+				recipe_item_quantity = "1個";
+						cart = cart + '<div class="card" id="recipes"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted"><tr><th scope="col">メニュー名</th><th scope="col" width="120">食材</th><th scope="col" width="120">数量</th><th scope="col" class="text-right" width="200">';
+				cart = cart + '<a href="" class="btn btn-outline-danger"> カートから削除</a>';
+						cart = cart + '</th></tr></thead><tbody><tr><td><figure class="media">';
+				cart = cart + '<div class="img-wrap"><img src='+ recipe_image_url +' class="img-thumbnail img-sm"></div>';
+						cart = cart + '<figcaption class="media-body"><h5 class="title text-truncate">';
+				cart = cart + '<div id="recipe_name">'+ recipe_name +'</div><!-- レシピ名 -->';
+						cart = cart + '</h5><dl class="dlist-inline small"><dt>　金額　: </dt><dd>';
+				cart = cart + '<div id="recipe_price">'+ recipe_price +'</div><!-- レシピ金額 -->';
+						cart = cart + '</dd></dl><dl class="dlist-inline small"><dt>ポイント: </dt><dd>';
+				cart = cart + '<div id="recipe_point">'+ recipe_point +'</div><!-- レシピポイント -->';
+						cart = cart + '</dd></dl></figcaption></figure></td><td class="text-muted"><div class="price-wrap"><var class="text-muted">';
+				cart = cart + '<div od="recipe_item_quantity">'+ recipe_item_Ingredients +'</div><!-- レシピ材料名 -->';
+						cart = cart + '</var></div> <!-- price-wrap .// --></td><td><div class="price-wrap"><var class="text-muted">';
+				cart = cart + '<div id="recipe_item_quantity">'+ recipe_item_quantity +'</div><!-- レシピ材料数量 -->';
+						cart = cart + '</var></div> <!-- price-wrap .// --></td><td class="text-right"><var class="text-muted" >';
+				cart = cart + '<a href="" class="btn btn-outline-danger"> カートから削除</a>';
+						cart = cart + '</var></td></tr></tbody></table><a><br></a></div> <!-- card.// -->';
+				num += 1;
+	//	});
+		var doc_cart_card = document.getElementById("cart_card");
+		doc_cart_card.innerHTML= cart;
+	 	});
+</script>
 
 </body>
 </html>
