@@ -96,9 +96,8 @@
 
   function add_to_cart() {
     apiResponse('POST', 'http://54.238.92.95:8080/api/v1/cart', '', null, function (cart) {
-      
-    })
-
+      var user_cart = cart
+    });
   }
 });
 
