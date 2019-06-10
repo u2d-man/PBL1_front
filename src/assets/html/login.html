@@ -11,14 +11,14 @@
 
     <script>
         function Judgelogin() {
-            target = document.getElementById("output");
-            userid =  document.forms.test.inputId.value;
-            password = document.forms.test.inputPassword.value;
-            parameters = 'user_id=' + userid + '&' + 'password=' + password;
+            var target = document.getElementById("output");
+            var userid =  document.forms.test.inputId.value;
+            var password = document.forms.test.inputPassword.value;
+            var parameters = 'user_id=' + userid + '&' + 'password=' + password;
             console.log(parameters);
 
-            get_need_response('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(choice_data) {
-                isLoginFlag = choice_data;
+            apiResponse('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(choice_data) {
+                var isLoginFlag = choice_data;
                 console.log(isLoginFlag);
 
                 if (isLoginFlag) {
