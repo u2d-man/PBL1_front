@@ -121,12 +121,12 @@ $(document).ready(function() {
 
 <dl class="dlist-align h4">
   <dt>合計：</dt>
-  <dd class="text-right"><strong><div id="sum_price">〇〇Ｐ</div></strong></dd>
+  <dd class="text-right"><strong><div id="sum_price">Ｐ</div></strong></dd>
 </dl>
 <hr>
 <dl class="dlist-align h4">
   <dt>合計：</dt>
-  <dd class="text-right"><strong><div id="sum_point">〇〇円</div></strong></dd>
+  <dd class="text-right"><strong><div id="sum_point">円</div></strong></dd>
 </dl>
 <hr>
 <dl class="dlist-align h4">
@@ -140,24 +140,24 @@ $(document).ready(function() {
 </section>
 
 <script>
-		user = 'goya';
-		apiURI = 'http://54.238.92.95:8080/api/v1/carts/users/' + user;
+		user_id = 'goya';
+		apiURI = 'http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
 		window.onload = function load_cart() {
 			apiResponse('GET',apiURI,'','',function(data){
+				console.log(data);
 				sum_price = 0;
 				sum_point = 0;
 				cart = '';
 				recipe_num = 1;
-				data.forEach(function( food ){
-					recipe_name = food.recipe_name;
-					recipe_image_url = food.recipe_image_url;
-					//recipe_price = food.recipe_price;
-					//recipe_point = food.recipe_point;
-					recipe_price = 500;
-					recipe_point = 10;
+				data.forEach(function( recipe ){
+					recipe_name = recipe.recipe_name;
+					recipe_image_url = recipe.recipe_image_url;
+					recipe_count = recipe.recipe_count;
+					recipe_price = recipe.price * recipe_count;
+					recipe_point = recipe.point * recipe_count;
 
 							cart += '<div class="card" id="recipe'+ recipe_num +'"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted"><tr>';
-					cart += '<th scope="col">レシピ'+ recipe_num +'</th>';
+					cart += '<th scope="col"  width="350">レシピ'+ recipe_num +'</th>';
 							cart += '<th scope="col"</th><th scope="col"></th><th scope="col" class="text-right"></th></tr></thead><tbody><tr><td><figure class="media">';
 					cart += '<div class="img-wrap"><img src='+ recipe_image_url +' class="img-thumbnail img-sm"></div>';
 							cart += '<figcaption class="media-body"><h5 class="title text-truncate">';
@@ -167,18 +167,42 @@ $(document).ready(function() {
 							cart += '</dd></dl><dl class="dlist-inline small"><dt>ポイント: </dt><dd>';
 					cart += '<div id="recipe_point">'+ recipe_point +'</div><!-- レシピポイント -->';
 							cart += '</dd></dl></figcaption></figure></td>';
-					cart += '<td><a href="" class="btn btn-outline-danger"> カートから削除</a></td></tr>';
+
+					cart += '<td><h5>'+ recipe_count +'人前</h5></td>';
+
+					cart += '<td><form ><div class="input-group"><select name="recipe_count">';
+					for (var i = 0 ; i <= recipe_count ; i++) {
+						if (i == recipe_count) {
+							cart += '<option value="recipe_'+ i +'" selected>'+ i +'</option>';
+						}else{
+							cart += '<option value="recipe_'+ i +'">'+ i +'</option>';
+						}
+					}
+					cart += '<select><div class="input-group-append"><button class="btn btn-primary" type="submit">';
+		      cart += '<a>数量変更</a></button></div></div></form></td></tr>';
 
 					ingredient_num = 1;
-					food.food_names.forEach(function( ingredient ){
+					recipe.foods.forEach(function( ingredient ){
 						recipe_item_Ingredients = ingredient.food_name;
 						recipe_item_quantity = ingredient.food_quantity;
+						food_count = ingredient.food_count;
 									cart += '<div id="ingredients'+ ingredient_num +'"><td class="text-muted"><div class="price-wrap"><var class="text-muted">';
 							cart += '<div id="recipe_item_quantity">'+ '　・　' + recipe_item_Ingredients +'</div>';
 									cart += '</var></div></td><td><div class="price-wrap"><var class="text-muted">';
 							cart += '<div id="recipe_item_quantity">'+ recipe_item_quantity +'</div>';
 									cart += '</var></div></td><td class="text-right"><var class="text-muted" >';
-							cart += '<a href="" class="btn btn-outline-danger"> カートから削除</a></var></td></tr><div>';
+
+							cart += '<td><form ><div class="input-group"><select name="food_count">';
+							for (var j = 0 ; j <= food_count ; j++) {
+								if (j == food_count) {
+									cart += '<option value="food_'+ j +'" selected>'+ j +'</option>';
+								}else{
+									cart += '<option value="food_'+ j +'">'+ j +'</option>';
+								}
+							}
+							cart += '<select><div class="input-group-append"><button class="btn btn-primary" type="submit">';
+				      cart += '<a>数量変更</a></button></div></div></form></td></tr>';
+
 						ingredient_num += 1;
 					});
 
