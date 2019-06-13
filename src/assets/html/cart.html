@@ -208,7 +208,7 @@ $(document).ready(function() {
 							}
 						}
 						cart += '</select></div></td></tr>';
-						
+
 						sum_point += (recipe_count - food_count) * 10;
 						ingredient_num += 1;
 					});
@@ -242,7 +242,9 @@ $(document).ready(function() {
 				var food_param  = 'user_id='+ user_id +'&recipe_id='+ api_recipe_id +'&food_id='+ foods.food_id +'&food_count='+ recipe_obj.value;
 				apiResponse('PUT',food_apiURI,'',food_param,function(data){});
 			});
-			window.timeoutID = window.setTimeout( location.reload(), 500 );
+			setTimeout(function() {
+  			location.reload()
+			}, 1500);
 		}
 
 		function change_food_counts(api_recipe_id) {
@@ -251,7 +253,9 @@ $(document).ready(function() {
 				var food_param  = 'user_id='+ user_id +'&recipe_id='+ api_recipe_id +'&food_id='+ foods.food_id +'&food_count='+ food_obj.value;
 				apiResponse('PUT',food_apiURI,'',food_param,function(data){});
 			});
-			window.timeoutID = window.setTimeout( location.reload(), 500 );
+			setTimeout(function() {
+  			location.reload()
+			}, 1500);
     }
 
 </script>
