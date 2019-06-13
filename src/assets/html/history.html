@@ -124,15 +124,22 @@
     </section>
 
     <script>
+      user_id = 'goya';
+      apiURI = 'http://54.238.92.95:8080/api/v1/purchase-histories/users/' + user_id;
       window.onload = function history() {
-        userID = 'goya';
-        apiURI = 'http://54.238.92.95:8080/api/v1/purchase-histories/users/' + userID;
-        apiResponse('GET', apiURI, '', '', function( data ){
-          date = data.date;
+        apiResponse('GET',apiURI,'','',function(data){
+          cart = '';
+          history_date = data.date;
           total_price = data.total_price;
           total_point = data.total_point;
 
-          data.PurchaseHistoryCards.forEach( function( history ){
+          cart += '<div class="card"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted">';
+          cart += '<tr><th scope="col" id="purchase-date"><p>購入日：</p><p>' + history_date + '</p></th>';
+          cart += '<th scope="col" class="small"><p>合計：</p><p>' + total_price + '</p></th>';
+          cart += '<th scope="col" class="small"><p>合計：</p><p>' + total_point + '</p></th>';
+          cart += '<th scope="col" width="120">食材</th><th scope="col" width="120">数量</th></tr></thead>';
+
+          data.PurchaseHistoryCards.forEach(function(history){
             recipe_name = history.recipe_name;
             recipe_count = history.recipe_count;
             recipe_image_url = history.recipe_image_url;
@@ -142,20 +149,21 @@
             cart += '<tr><th scope="col" id="purchase-date"></th><th scope="col" width="120">食材<th><th scope="col" width="120">数量<th></tr></thead>';
             cart += '<tbody><tr><td><figure class="media"><div class="img-wrap"><img src="' + recipe_image_url + '" class="img-thumbna il img-sm"></div>';
             cart += '<figcaption class="media-body"><h6 class="title text-truncate">' + recipe_name+ '</h6>';
-            cart += '<dl class="dlist-inline small"><dt>合計金額：</dt><dd>' + total_price + '</dd></dl>';
-            cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + total_point + '</dd></dl>';
-            cart += '<dl class="dlist-inline small"><dt>' + '1' + '</dt><dd>人前</dd></dl></figcaption></figure></td>';
+            cart += '<dl class="dlist-inline small"><dt>合計金額：</dt><dd>' + recipe_price + '</dd></dl>';
+            cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + recipe_point + '</dd></dl>';
+            cart += '<dl class="dlist-inline small"><dt>' + food_count + '</dt><dd>人前</dd></dl></figcaption></figure></td>';
             cart += '<td class="text-muted">';
-            history.foods.forEach( function( details ){
+            
+            history.foods.forEach(function(details){
               food_name = details.food_name;
               food_quantity = details.food_quantity;
               food_count = details.food_count;
               cart += '<p>' + food_name + '</p>';
             });
-            cart += '</td><td><div class="price-wrap"><var class="text-muted">' + food_count + '個</var></div></td></tr></tbody></table></div>'
+            cart += '</td><td><div class="price-wrap"><var class="text-muted">' + food_count + '個</var></div></td></tr></tbody></table></div>';
           });
           var doc_history_card = document.getElementById("history_card");
-          doc_history_card.innerHTML = history-card; //card部分表示
+          doc_history_card.innerHTML = cart; //card部分表示
         });
       }
     </script>
