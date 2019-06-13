@@ -160,8 +160,13 @@ $(document).ready(function() {
 					var recipe_point = recipe.point * recipe_count;
 					var recipe_id = recipe.recipe_id;
 					eval('recipe_foods' + recipe_id + '=recipe.foods;');
-
-							cart += '<div class="card" id="recipe'+ recipe_id +'"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted"><tr>';
+						cart += '<div class="card" id="recipe'+ recipe_id +'">';
+						if(recipe_count == 0){
+							cart += '<table class="table table-hover shopping-cart-wrap" style="background-color:#e0e0e0;">';
+						}else{
+							cart += '<table class="table table-hover shopping-cart-wrap">';
+						}
+							cart += '<thead class="text-muted"><tr>';
 					cart += '<th scope="col"  width="350">レシピ'+ (recipe_num + 1) +'</th>';
 							cart += '<th scope="col"</th><th scope="col"></th><th scope="col" class="text-right"></th></tr></thead><tbody><tr><td><figure class="media">';
 					cart += '<div class="img-wrap"><img src='+ recipe_image_url +' class="img-thumbnail img-sm"></div>';
@@ -193,6 +198,11 @@ $(document).ready(function() {
 						var food_count = ingredient.food_count;
 						var recipe_item_Ingredients = ingredient.food_name;
 						var recipe_item_quantity = ingredient.food_quantity;
+							if(food_count == 0){
+								cart += '<tr style="background-color:#e0e0e0;">';
+							}else{
+								cart += '<tr>';
+							}
 									cart += '<div id="ingredients'+ ingredient_num +'"><td class="text-muted"><div class="price-wrap"><var class="text-muted">';
 							cart += '<div id="recipe_item_quantity">'+ '　・　' + recipe_item_Ingredients +'</div>';
 									cart += '</var></div></td><td><div class="price-wrap"><var class="text-muted">';
@@ -216,10 +226,6 @@ $(document).ready(function() {
 					cart += '<tr><td colspan="3"></td><td><button class="btn btn-primary" type="submit"onclick="change_food_counts('+ recipe_id +')">';
 					cart += '<a>数量変更</a>';
 					cart += '</button></td></tr>';
-					/*cart += '<tr><td><div class="input-group-append">';
-					cart += '<button class="btn btn-primary" type="submit"onclick="change_food_counts('+ recipe_id +')"><a>数量変更</a></button>';
-					cart += '</div></td></tr>';*/
-
 					cart += '</tbody></table><a><br></a></div>';
 					sum_price +=	recipe_price;
 					sum_point +=	recipe_point;
