@@ -139,7 +139,7 @@
             cart += '<tr><th scope="col">購入日：' + history_date + '</th>';
             //cart += '<th scope="col" class="small"><p>合計：</p>' + total_price + '円</th>';
             //cart += '<th scope="col" class="small"><p>合計：</p>' + total_point + 'P</th>';
-            cart += '<th scope="col" width="120">食材</th><th></th><th scope="col" width="120">数量</th></tr></thead>';
+            cart += '<th scope="col" width="120">食材</th><th scope="col" width="120">数量</th><th scope="col" width="120">人数分</th></tr></thead>';
           
             history.PurchaseHistoryCards.forEach(function(recipe){
               recipe_name = recipe.recipe_name;
@@ -156,13 +156,27 @@
             
               recipe.foods.forEach(function(details){
                 food_name = details.food_name;
-                food_quantity = details.food_quantity;
-                food_count = details.food_count;
                 cart += '<p>' + food_name + '</p>';
-                cart += '</td><td><div class="price-wrap"><var class="text-muted">' + food_count + '個</var></div></td>';
               });
-              cart += '</tr></tbody></table></div>'
+              
+              cart += '</td><td class="text-muted">';
+
+              recipe.foods.forEach(function(details){
+                food_quantity = details.food_quantity;
+                cart += '<p>' + food_quantity + '</p>';
+              });
+
+              cart += '</td><td class="text-muted">';
+
+              recipe.foods.forEach(function(details){
+                food_count = details.food_count;
+                cart += '<p>' + food_count + '</p>'
+              });
+
+              cart += '</td>';
             });
+            
+            cart += '</tr></tbody></table></div>'
             var doc_history_card = document.getElementById("history_card");
             doc_history_card.innerHTML = cart; //card部分表示
           });
