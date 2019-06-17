@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="author" content="Bootstrap-ecommerce by Vosidiy">
 
-<title>CART</title>
+<title>カート</title>
 
 <!-- jQuery -->
 <script src="../js/bootstrap_js/jquery-2.0.0.min.js" type="text/javascript"></script>
@@ -121,14 +121,17 @@ $(document).ready(function() {
 
 <dl class="dlist-align h4">
   <dt>合計：</dt>
-  <dd class="text-right"><strong><div>〇〇Ｐ</div></strong></dd>
+  <dd class="text-right"><strong><div id="sum_price">Ｐ</div></strong></dd>
 </dl>
 <hr>
 <dl class="dlist-align h4">
   <dt>合計：</dt>
-  <dd class="text-right"><strong><div>〇〇円</div></strong></dd>
+  <dd class="text-right"><strong><div id="sum_point">円</div></strong></dd>
 </dl>
 <hr>
+<dl class="dlist-align h4">
+  <button type="button" onclick="" class="btn btn-lg btn-primary btn-block text-uppercase">購入する</button>
+</dl>
 
 	</aside> <!-- col.// -->
 </div>
@@ -137,46 +140,130 @@ $(document).ready(function() {
 </section>
 
 <script>
-		get_need_response('GET','','','',function(data){
-			num = 1;
-			cart = '';
-			/*recipe_Ingredients.forEach(function( ingredient ){
-				recipe_name = data.recipe_name;
-				recipe_image_url = data.recipe_image_url;
-				recipe_price = data.recipe_price;
-				recipe_point = data.recipe_point;
-				recipe_item_Ingredients = data.recipe_Ingredients;
-				recipe_item_quantity = data.recipe_quantity;
-			*/
-				recipe_name = "芋";
-				recipe_image_url = "";
-				recipe_price = "100";
-				recipe_point = "100";
-				recipe_item_Ingredients = "芋";
-				recipe_item_quantity = "1個";
-						cart = cart + '<div class="card" id="recipes"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted"><tr><th scope="col">メニュー名</th><th scope="col" width="120">食材</th><th scope="col" width="120">数量</th><th scope="col" class="text-right" width="200">';
-				cart = cart + '<a href="" class="btn btn-outline-danger"> カートから削除</a>';
-						cart = cart + '</th></tr></thead><tbody><tr><td><figure class="media">';
-				cart = cart + '<div class="img-wrap"><img src='+ recipe_image_url +' class="img-thumbnail img-sm"></div>';
-						cart = cart + '<figcaption class="media-body"><h5 class="title text-truncate">';
-				cart = cart + '<div id="recipe_name">'+ recipe_name +'</div><!-- レシピ名 -->';
-						cart = cart + '</h5><dl class="dlist-inline small"><dt>　金額　: </dt><dd>';
-				cart = cart + '<div id="recipe_price">'+ recipe_price +'</div><!-- レシピ金額 -->';
-						cart = cart + '</dd></dl><dl class="dlist-inline small"><dt>ポイント: </dt><dd>';
-				cart = cart + '<div id="recipe_point">'+ recipe_point +'</div><!-- レシピポイント -->';
-						cart = cart + '</dd></dl></figcaption></figure></td><td class="text-muted"><div class="price-wrap"><var class="text-muted">';
-				cart = cart + '<div od="recipe_item_quantity">'+ recipe_item_Ingredients +'</div><!-- レシピ材料名 -->';
-						cart = cart + '</var></div> <!-- price-wrap .// --></td><td><div class="price-wrap"><var class="text-muted">';
-				cart = cart + '<div id="recipe_item_quantity">'+ recipe_item_quantity +'</div><!-- レシピ材料数量 -->';
-						cart = cart + '</var></div> <!-- price-wrap .// --></td><td class="text-right"><var class="text-muted" >';
-				cart = cart + '<a href="" class="btn btn-outline-danger"> カートから削除</a>';
-						cart = cart + '</var></td></tr></tbody></table><a><br></a></div> <!-- card.// -->';
-				num += 1;
-	//	});
-		var doc_cart_card = document.getElementById("cart_card");
-		doc_cart_card.innerHTML= cart;
-	 	});
-</script>
+		var user_id='goya';
+		cart_apiURI = 'http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
+		recipe_apiURI = 'http://54.238.92.95:8080/api/v1/carts/recipe-counts';
+		food_apiURI = 'http://54.238.92.95:8080/api/v1/carts/food-counts';
 
+		window.onload = function load_cart() {
+			apiResponse('GET',cart_apiURI,'','',function(data){
+				console.log(data);
+				var sum_price = 0;
+				var sum_point = 0;
+				var cart = '';
+				var recipe_num = 0;
+				data.forEach(function( recipe ){
+					var recipe_name = recipe.recipe_name;
+					var recipe_image_url = recipe.recipe_image_url;
+					var recipe_count = recipe.recipe_count;
+					var recipe_price = recipe.price * recipe_count;
+					var recipe_point = recipe.point * recipe_count;
+					var recipe_id = recipe.recipe_id;
+					eval('recipe_foods' + recipe_id + '=recipe.foods;');
+						cart += '<div class="card" id="recipe'+ recipe_id +'">';
+						if(recipe_count == 0){
+							cart += '<table class="table table-hover shopping-cart-wrap" style="background-color:#e0e0e0;">';
+						}else{
+							cart += '<table class="table table-hover shopping-cart-wrap">';
+						}
+							cart += '<thead class="text-muted"><tr>';
+					cart += '<th scope="col"  width="350">レシピ'+ (recipe_num + 1) +'</th>';
+							cart += '<th scope="col"</th><th scope="col"></th><th scope="col" class="text-right"></th></tr></thead><tbody><tr><td><figure class="media">';
+					cart += '<div class="img-wrap"><img src='+ recipe_image_url +' class="img-thumbnail img-sm"></div>';
+							cart += '<figcaption class="media-body"><h5 class="title text-truncate">';
+					cart += '<div id="recipe_name">'+ recipe_name +'</div><!-- レシピ名 -->';
+							cart += '</h5><dl class="dlist-inline small"><dt>　金額　: </dt><dd>';
+					cart += '<div id="recipe_price">'+ recipe_price +'</div><!-- レシピ金額 -->';
+							cart += '</dd></dl><dl class="dlist-inline small"><dt>ポイント: </dt><dd>';
+					cart += '<div id="recipe_point">'+ recipe_point +'</div><!-- レシピポイント -->';
+							cart += '</dd></dl></figcaption></figure></td>';
+
+					cart += '<td><h5>'+ recipe_count +'人前</h5></td>';
+					cart += '<td><div class="input-group"><select id="recipe_select'+ recipe_id +'">';
+					for (var i = 0 ; i <= 5 ; i++) {
+						if (i == recipe_count) {
+							cart += '<option value="'+ i +'" selected>'+ i +'</option>';
+						}else{''
+							cart += '<option value="'+ i +'">'+ i +'</option>';
+						}
+					}
+					cart += '</select><div class="input-group-append">';
+					cart += '<button class="btn btn-primary" type="submit"';
+					cart += 'onclick="change_recipe_counts('+ recipe_id +')">';
+		      cart += '<a>数量変更</a></button></div></div></td></tr>';
+
+					var ingredient_num = 0;
+					eval('recipe_foods' + recipe_id).forEach(function( ingredient ){
+						var food_id = ingredient.food_id;
+						var food_count = ingredient.food_count;
+						var recipe_item_Ingredients = ingredient.food_name;
+						var recipe_item_quantity = ingredient.food_quantity;
+							if(food_count == 0){
+								cart += '<tr style="background-color:#e0e0e0;">';
+							}else{
+								cart += '<tr>';
+							}
+									cart += '<div id="ingredients'+ ingredient_num +'"><td class="text-muted"><div class="price-wrap"><var class="text-muted">';
+							cart += '<div id="recipe_item_quantity">'+ '　・　' + recipe_item_Ingredients +'</div>';
+									cart += '</var></div></td><td><div class="price-wrap"><var class="text-muted">';
+							cart += '<div id="recipe_item_quantity">'+ recipe_item_quantity +'　×　'+ food_count +'</div>';
+									cart += '</var></div></td><td class="text-right"><var class="text-muted" >';
+
+							cart += '<td><div class="input-group"><select id="food_select'+ recipe_id +'_'+ food_id +'">';
+						for (var j = 0 ; j <= recipe_count ; j++) {
+							if (j == food_count) {
+								cart += '<option value="'+ j +'" selected>'+ j +'</option>';
+							}else{
+								cart += '<option value="'+ j +'">'+ j +'</option>';
+							}
+						}
+						cart += '</select></div></td></tr>';
+
+						sum_point += (recipe_count - food_count) * 10;
+						ingredient_num += 1;
+					});
+
+					cart += '<tr><td colspan="3"></td><td><button class="btn btn-primary" type="submit"onclick="change_food_counts('+ recipe_id +')">';
+					cart += '<a>数量変更</a>';
+					cart += '</button></td></tr>';
+					cart += '</tbody></table><a><br></a></div>';
+					sum_price +=	recipe_price;
+					sum_point +=	recipe_point;
+					recipe_num += 1;
+			});
+			var doc_cart_card = document.getElementById("cart_card");
+			doc_cart_card.innerHTML= cart;
+			var doc_sum_price = document.getElementById("sum_price");
+			doc_sum_price.innerHTML= sum_price + "円";
+			var doc_sum_point = document.getElementById("sum_point");
+			doc_sum_point.innerHTML= sum_point + "Ｐ";
+		 	});
+		}
+
+		function change_recipe_counts(api_recipe_id) {
+			var recipe_obj = document.getElementById('recipe_select' + api_recipe_id);
+			var recipe_param  = 'user_id='+ user_id +'&recipe_id='+ api_recipe_id +'&recipe_count='+ recipe_obj.value;
+			apiResponse('PUT',recipe_apiURI,'',recipe_param,function(data){});
+			eval('recipe_foods' + api_recipe_id).forEach(function( foods ){
+				var food_param  = 'user_id='+ user_id +'&recipe_id='+ api_recipe_id +'&food_id='+ foods.food_id +'&food_count='+ recipe_obj.value;
+				apiResponse('PUT',food_apiURI,'',food_param,function(data){});
+			});
+			setTimeout(function() {
+  			location.reload()
+			}, 1500);
+		}
+
+		function change_food_counts(api_recipe_id) {
+			eval('recipe_foods' + api_recipe_id).forEach(function( foods ){
+				var food_obj = document.getElementById('food_select'+ api_recipe_id +'_'+ foods.food_id);
+				var food_param  = 'user_id='+ user_id +'&recipe_id='+ api_recipe_id +'&food_id='+ foods.food_id +'&food_count='+ food_obj.value;
+				apiResponse('PUT',food_apiURI,'',food_param,function(data){});
+			});
+			setTimeout(function() {
+  			location.reload()
+			}, 1500);
+    }
+
+</script>
 </body>
 </html>
