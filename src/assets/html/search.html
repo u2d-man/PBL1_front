@@ -136,6 +136,11 @@ $(document).ready(function() {
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content bg padding-y">
 <div class="container">
+	<table><tr>
+		<td><div><h2><div id="disp_search_key">肉</div></h2><div></td>
+		<td><div><h3>のレシピ　</h3><div></td>
+		<td><div><h4><div id="disp_search_length"></div></h4><div></td>
+	</tr></table>
 
 <div class="row">
 
@@ -169,11 +174,13 @@ $(document).ready(function() {
 				search += '<span class="price">'+ price +'円</span> <br>';
 				search += '<span class="price">'+ point +'pt</span></div><br>';
 				search += '<p><a href="#" class="btn btn-primary"> レシピ詳細 </a></p>';
-				search += '<a href="#"><i class="fa fa-heart"></i> Add to Bookmark </a></div>';
+				search += '<button class="btn btn-primary" type="submit" onClick=""><i class="fas fa-star"></i></button></div>';
 				search += '</aside></div></div></article>'
 			});
 			var doc_search = document.getElementById("search");
 			doc_search.innerHTML = search;
+			var doc_disp_search_length = document.getElementById("disp_search_length");
+			doc_disp_search_length.innerHTML = data.length + '品';
 		});
 	}
 </script>
