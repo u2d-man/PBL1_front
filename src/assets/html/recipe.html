@@ -3,11 +3,6 @@
 <head>
   <meta charset="utf-8">
 
-  <script>
-    recipenum = 2;
-    apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
-  </script>
-
   <!--<title>RECIPE</title>-->
   <!-- jQuery -->
   <script src="../js/bootstrap_js/jquery-2.0.0.min.js" type="text/javascript"></script>
@@ -52,6 +47,12 @@
 <script src="../js/apiRequest.js"></script>
 <script>
   window.onload = function load_recipe() {
+
+    var recipenum = document.location.search;
+    recipenum = recipenum.substring(11,recipenum.length);
+    console.log(recipenum);
+    apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
+
     apiResponse('GET', apiURI, '', '', function (data) {
       // レシピの名前を表示させる処理
       document.title = data.recipe_name;

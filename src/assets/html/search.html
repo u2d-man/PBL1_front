@@ -173,7 +173,10 @@ $(document).ready(function() {
 				search += '</article><aside class="col-sm-3 border-left"><div class="action-wrap"><div class="price-wrap h4">';
 				search += '<span class="price">'+ price +'円</span> <br>';
 				search += '<span class="price">'+ point +'pt</span></div><br>';
-				search += '<p><a href="#" class="btn btn-primary"> レシピ詳細 </a></p>';
+				search += '<p><form action="recipe.html" method="GET">';
+					search += '<input name="recipe_id" id="recipe_id" value="'+ dat.recipe_id +'" type="hidden">';
+    			search += '<input type="submit" class="btn btn-primary" value="レシピ詳細">';
+				search += '</form></p>';
 				search += '<button class="btn btn-primary" type="submit" onClick=""><i class="fas fa-star"></i></button><id></div>';
 				search += '</aside></div></div></article>'
 			});
