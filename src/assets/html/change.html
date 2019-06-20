@@ -33,14 +33,11 @@
   <div class="container">
   <div class="row">
 	<main class="col-sm-9">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
     <div align="center" style="text-align: center;">
       <h3>ユーザー情報の変更</h3>
       <form id="change"><table align="center" style="font-size: 20px;">
         <tr><td align="right">名前</td>
           <td>：</td><td align="left"><div id="name"></div></td></tr>
-        <tr><td align="right">ユーザーID</td>
-          <td>：</td><td align="left"><div id="id"></div></td></tr>
         <tr><td align="right">Ｅメール</td>
           <td>：</td><td align="left"><div id="email"></div></td></tr>
         <tr><td align="right">お届け先</td>
@@ -54,7 +51,6 @@
           <td>：</td><td align="left"><input type="password" id="old_pass"></input></td></tr>
       </table></form>
       <button type="button" onclick="change()" class="btn btn-primary" align="center">　変更内容を保存　</button>
-    </div>
     </div>
   </main>
   </div>
@@ -80,9 +76,7 @@
 
         //出力部
           var doc_name = document.getElementById("name");
-          doc_name.innerHTML= '<input type="text" id="dis_name" value="'+ api_name +'"></input>';
-          var doc_id = document.getElementById("id");
-          doc_id.innerHTML= '<input type="text" id="dis_id" value="'+ api_id +'"></input>';
+          doc_name.innerHTML= '<input type="text" id="dis_name" value="'+ api_name +'"></input>'
           var doc_email = document.getElementById("email");
           doc_email.innerHTML= '<input type="text" id="dis_email" value="'+ api_email +'"></input>';
           var doc_address = document.getElementById("address");
@@ -93,17 +87,16 @@
 
     function change() {
       change_name = document.forms.change.dis_name.value;
-      change_id = document.forms.change.dis_id.value;
       change_email = document.forms.change.dis_email.value;
       change_address = document.forms.change.dis_address.value;
       change_pass = document.forms.change.new_pass.value;
       change_pass2 = document.forms.change.new_pass2.value;
       change_old_pass = document.forms.change.old_pass.value;
-      if (change_name != "" && change_id != "" && change_email != "" && change_address != "" && change_pass != "" && change_pass2 != "" && change_old_pass != "") {
+      if (change_name != "" && change_email != "" && change_address != "" && change_pass != "" && change_pass2 != "" && change_old_pass != "") {
         if (change_old_pass == pass) {
           if(change_pass == change_pass2){
             change_key = '';
-            change_param = 'user_id='+ change_id +'&user_name='+ change_name +'&user_email='+ change_email;
+            change_param = '&user_name='+ change_name +'&user_email='+ change_email;
             change_param += '&user_street_address='+ change_address +'&old_password='+ pass +'&new_password='+ change_pass;
             apiResponse('PUT',apiURI,change_key,change_param,function(data) {});
             setTimeout(function() {
