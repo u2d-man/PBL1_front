@@ -98,6 +98,7 @@
     apiResponse('POST', cart_add_apiURI, '', cart_add_param, function (cart) {});
     setTimeout(function() {
       alert('カートに追加しました。');
+      window.location.href = 'cart.html';
     }, 250);
   }
 
