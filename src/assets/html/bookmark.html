@@ -62,7 +62,8 @@
 <!-- スクリプト記載 -->
 <script src="../js/apiRequest.js"></script>
 <script>
-	apiURI = "http://54.238.92.95:8080/api/v1/bookmark/users/goya";
+	user_id = sessionStorage.getItem('user_id');
+	apiURI = "http://54.238.92.95:8080/api/v1/bookmark/users/" + user_id;
 	window.onload = function load_search(){
 		apiResponse('GET',apiURI,'','',function(data){
 			console.log(data);
