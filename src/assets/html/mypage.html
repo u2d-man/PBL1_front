@@ -91,17 +91,19 @@
   </section>
 
   <script>
-    window.onload = function mypage() {
-        user_id = 'goya';
-        apiURI = 'http://54.238.92.95:8080/api/v1/mypage/users/' + user_id;
-        apiResponse('GET',apiURI,'','',function(data) {
-          console.log(data);
+  apiURI = 'http://54.238.92.95:8080/api/v1/mypage';
+  user_id = sessionStorage.getItem('user_id');
+  window.onload = function mypage() {
+      key = '';
+      param = 'user_id=' + user_id;
+      apiResponse('POST',apiURI,key,param,function(data) {
+        console.log(data);
         //受け取るデータ
-          var api_point = data.cumulative_points;
-          var api_name = data.user_name;
-          var api_id = data.user_id;
-          var api_email = data.user_email;
-          var api_address = data.user_street_address;
+          api_point = data.cumulative_points;
+          api_name = data.user_name;
+          api_id = data.user_id;
+          api_email = data.user_email;
+          api_address = data.user_street_address;
         //出力部
           var doc_point = document.getElementById("point");
           doc_point.innerHTML= api_point +'P';
