@@ -22,6 +22,7 @@
                 console.log(isLoginFlag);
 
                 if (isLoginFlag) {
+                    sessionStorage.setItem('user_id', userid);
                     document.location.href = 'home.html';
                 }
             });

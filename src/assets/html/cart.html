@@ -63,7 +63,7 @@
 </section>
 
 <script>
-		var user_id='goya';
+		user_id = sessionStorage.getItem('user_id');
 		cart_apiURI = 'http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
 		recipe_apiURI = 'http://54.238.92.95:8080/api/v1/carts/recipe-counts';
 		food_apiURI = 'http://54.238.92.95:8080/api/v1/carts/food-counts';

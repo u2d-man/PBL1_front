@@ -41,8 +41,9 @@
 
     var recipenum = document.location.search;
     recipenum = recipenum.substring(11,recipenum.length);
+    user_id = sessionStorage.getItem('user_id');
     recipe_apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
-    cart_add_param = 'user_id='+ 'goya' + '&' + 'recipe_id=' + recipenum;
+    cart_add_param = 'user_id='+ user_id + '&' + 'recipe_id=' + recipenum;
     cart_add_apiURI = 'http://54.238.92.95:8080/api/v1/carts';
 
     apiResponse('GET', recipe_apiURI, '', '', function (data) {
