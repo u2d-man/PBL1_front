@@ -50,10 +50,11 @@
 
     var recipenum = document.location.search;
     recipenum = recipenum.substring(11,recipenum.length);
-    console.log(recipenum);
-    apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
+    recipe_apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
+    cart_add_param = 'user_id='+ 'goya' + '&' + 'recipe_id=' + recipenum;
+    cart_add_apiURI = 'http://54.238.92.95:8080/api/v1/carts';
 
-    apiResponse('GET', apiURI, '', '', function (data) {
+    apiResponse('GET', recipe_apiURI, '', '', function (data) {
       // レシピの名前を表示させる処理
       document.title = data.recipe_name;
 
@@ -101,13 +102,14 @@
       // レシピの作り方を表示させる処理終了
     });
   }
-  /*
+
   function add_to_cart() {
-    apiResponse('POST', 'http://54.238.92.95:8080/api/v1/cart', '', 'recipe_id=', function (cart) {
-      var user_cart = cart
-    });
+    apiResponse('POST', cart_add_apiURI, '', cart_add_param, function (cart) {});
+    setTimeout(function() {
+      alert('カートに追加しました。');
+    }, 250);
   }
-  */
+
 </script>
 
 <section class="section-content bg padding-y-sm">
@@ -145,8 +147,8 @@
                     <table border="0"><tr><td><div id="recipe_ingredient"></div></td></tr></table>
 
                   </form>
-                  <a>　　　　　　　　　　　</a>
-                  <input class="btn btn-primary" type="button" onClick="add_to_cart()" value="　購入　">
+                  <a>　　　　　　　　</a>
+                  <input class="btn btn-primary" type="button" onClick="add_to_cart()" value="　カートに追加　">
                   <!-- ブックマーク用のボタンを用意 -->
                   <button class="btn btn-primary" type="submit">
                    <i class="fas fa-star"></i>
