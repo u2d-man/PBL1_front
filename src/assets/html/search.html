@@ -49,7 +49,7 @@
 <section class="section-content bg padding-y">
 <div class="container">
 	<table><tr>
-		<td><div><h2><div id="disp_search_key">肉</div></h2><div></td>
+		<td><div><h2><div id="disp_search_key"></div></h2><div></td>
 		<td><div><h3>のレシピ　</h3><div></td>
 		<td><div><h4><div id="disp_search_length"></div></h4><div></td>
 	</tr></table>
@@ -66,8 +66,19 @@
 <!-- スクリプト記載 -->
 <script src="../js/apiRequest.js"></script>
 <script>
-	apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/1/keys/肉";
 	window.onload = function load_search(){
+		var search_item = decodeURIComponent(location.search.substring(1));
+		var cat_search = search_item.split('&');
+		key_name = cat_search[0].substring(4,cat_search[0].length);
+		category = cat_search[1].substring(12,cat_search[1].length);
+
+		if(key_name != ''){
+			apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/"+ category +"/keys/"+ key_name;
+		}else{
+			apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/"+ category;
+		}
+		c_uri = "http://54.238.92.95:8080/api/v1/categories";
+		//document.write(apiURI);
 		apiResponse('GET',apiURI,'','',function(data){
 			search = '';
 			data.forEach(function ( dat ){
@@ -90,14 +101,30 @@
     			search += '<input type="submit" class="btn btn-primary" value="レシピ詳細">';
 				search += '</form></p>';
 				search += '<button class="btn btn-primary" type="submit" onClick=""><i class="fas fa-star"></i></button><id></div>';
-				search += '</aside></div></div></article>'
+				search += '</aside></div></div></article>';
 			});
 			var doc_search = document.getElementById("search");
 			doc_search.innerHTML = search;
 			var doc_disp_search_length = document.getElementById("disp_search_length");
 			doc_disp_search_length.innerHTML = data.length + '品';
 		});
+		n = 1;
+		apiResponse('GET',c_uri,'','',function(data){
+			c_name = '';
+			data.forEach(function(dat){
+				if(n == category-0){
+					c_name = dat.category_name;
+				}
+				n++;
+			});
+			console.log(c_name);
+			var doc_key = document.getElementById("disp_search_key");
+			doc_key.innerHTML = key_name+ "　" + c_name;
+		});
+
+
 	}
+
 </script>
 <footer class="section-footer bg-secondary">
 	<div class="container">
