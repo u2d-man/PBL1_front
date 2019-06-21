@@ -81,8 +81,8 @@ $(document).ready(function() {
 				<a href="cart.html" class="widget-header mr-3" target="_top">
 					<div class="icontext">
 						<div class="icon-wrap"><i class="icon-sm round border fa fa-shopping-cart"></i></div>
-						<div class="text-wrap">
-							<span class="small badge badge-danger" id = "cart_num"></span>
+						<div class="text-wrap" id="cart_num">
+							<span class="small badge badge-danger"></span>
 							<div>Cart</div>
 						</div>
 					</div>
@@ -118,12 +118,21 @@ $(document).ready(function() {
 			var doc_categories = document.getElementById("category");
 			doc_categories.innerHTML = category;
 		});
-		function cart_numChange(){
-			apiResponse('GET',cart_apiURI,'','',function(data){
-				num = date.length;
-			});
+		c_num = '';
+		apiResponse('GET',cart_apiURI,'','',function(data){
+			dat = data;
+			num = dat.length;
+
+			if(num == 0){
+				c_num += '<div>Cart</div>';
+			}else{
+				c_num += '<span class="small badge badge-danger">'+ num +'</span><div>Cart</div>';
+			}	
+			console.log(c_num);
 			var num_change = document.getElementById("cart_num");
-			num_change.innerHTML = num;
-		}
+			num_change.innerHTML = c_num;
+
+		});
+
 	}
 </script>
