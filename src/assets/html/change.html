@@ -36,21 +36,22 @@
     <div align="center" style="text-align: center;">
       <h3>ユーザー情報の変更</h3>
       <form id="change"><table align="center" style="font-size: 20px;">
-        <tr><td align="right">名前</td>
-          <td>：</td><td align="left"><div id="name"></div></td></tr>
+        <tr><td align="right" style="width:500px;">名前</td>
+          <td>：</td><td align="left"><div id="name"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">Ｅメール</td>
-          <td>：</td><td align="left"><div id="email"></div></td></tr>
+          <td>：</td><td align="left"><div id="email"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">お届け先</td>
-          <td>：</td><td align="left"><div id="address"></div></td></tr>
+          <td>：</td><td align="left"><div id="address"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">新しいパスワード</td>
-          <td>：</td><td align="left"><input type="password" id="new_pass"></input></td></tr>
+          <td>：</td><td align="left"><input type="password" id="new_pass" style="width:500px;"></input></td></tr>
         <tr><td align="right">新しいパスワード<br>(再入力)　　</td>
-          <td>：</td><td align="left"><input type="password" id="new_pass2"></input></td></tr>
+          <td>：</td><td align="left"><input type="password" id="new_pass2" style="width:500px;"></input></td></tr>
         <tr><td colspan="3">　</td></tr>
         <tr><td align="right">現在のパスワード</td>
-          <td>：</td><td align="left"><input type="password" id="old_pass"></input></td></tr>
-      </table></form>
-      <button type="button" onclick="change()" class="btn btn-primary" align="center">　変更内容を保存　</button>
+          <td>：</td><td align="left"><input type="password" id="old_pass" style="width:500px;"></input></td></tr>
+      </table></form><br><br><br>
+      <button type="button" onclick="change()" class="btn btn-primary" align="center">　変更内容を保存　</button><br><br>
+      <button type="button" onclick="location.href='mypage.html'" class="btn btn-primary">　キャンセル　</button>
     </div>
   </main>
   </div>
@@ -67,20 +68,19 @@
         apiResponse('POST',apiURI,mypage_key,mypage_param,function(data) {
           console.log(data);
         //受け取るデータ
-          var api_point = data.cumulative_points;
-          var api_name = data.user_name;
-          var api_id = data.user_id;
-          var api_email = data.user_email;
-          var api_address = data.user_street_address;
+          api_point = data.cumulative_points;
+          api_name = data.user_name;
+          api_id = data.user_id;
+          api_email = data.user_email;
+          api_address = data.user_street_address;
           pass = data.user_password;
-
         //出力部
           var doc_name = document.getElementById("name");
-          doc_name.innerHTML= '<input type="text" id="dis_name" value="'+ api_name +'"></input>'
+          doc_name.innerHTML= '<input type="text" id="dis_name" value="'+ api_name +'" style="width:500px;"></input>'
           var doc_email = document.getElementById("email");
-          doc_email.innerHTML= '<input type="text" id="dis_email" value="'+ api_email +'"></input>';
+          doc_email.innerHTML= '<input type="text" id="dis_email" value="'+ api_email +'" style="width:500px;"></input>';
           var doc_address = document.getElementById("address");
-          doc_address.innerHTML= '<input type="text" id="dis_address" value="'+ api_address +'"></input>';
+          doc_address.innerHTML= '<input type="text" id="dis_address" value="'+ api_address +'" style="width:500px;"></input>';
           console.log(pass);
         });
     }
@@ -92,23 +92,38 @@
       change_pass = document.forms.change.new_pass.value;
       change_pass2 = document.forms.change.new_pass2.value;
       change_old_pass = document.forms.change.old_pass.value;
-      if (change_name != "" && change_email != "" && change_address != "" && change_pass != "" && change_pass2 != "" && change_old_pass != "") {
-        if (change_old_pass == pass) {
-          if(change_pass == change_pass2){
-            change_key = '';
-            change_param = '&user_name='+ change_name +'&user_email='+ change_email;
-            change_param += '&user_street_address='+ change_address +'&old_password='+ pass +'&new_password='+ change_pass;
-            apiResponse('PUT',apiURI,change_key,change_param,function(data) {});
-            setTimeout(function() {
-              window.location.href = 'mypage.html';
-            }, 500);
+      change_param = '';
+      if (change_name != "" && change_email != "" && change_address != "" && change_old_pass != "") {
+        if (change_pass != "" || change_pass2 != "") {
+          if (change_pass == change_pass2) {
+            if (change_old_pass == pass) {
+              change_param += 'user_id='+ user_id +'&user_name='+ change_name +'&user_email='+ change_email;
+              change_param += '&user_street_address='+ change_address;
+              change_param += '&old_password='+ pass +'&new_password='+ change_pass;
+              apiResponse('PUT',apiURI,'',change_param,function(data) {});
+              setTimeout(function() {
+                window.location.href = 'mypage.html';
+              }, 500);
+            } else {
+              alert('現在のパスワードが間違っています。');
+            }
           }else {
             alert('再入力されたパスワードが間違っています。');
           }
-        }else{
-          alert('現在のパスワードが間違っています。');
+        } else {
+          if (change_old_pass == pass) {
+            change_param += 'user_id='+ user_id +'&user_name='+ change_name +'&user_email='+ change_email;
+            change_param += '&user_street_address='+ change_address;
+            change_param += '&old_password='+ pass +'&new_password='+ pass;
+            apiResponse('PUT',apiURI,'',change_param,function(data) {});
+            setTimeout(function() {
+              window.location.href = 'mypage.html';
+            }, 500);
+          } else {
+            alert('現在のパスワードが間違っています。');
+          }
         }
-      }else {
+      } else {
         alert('入力されていない項目があります。');
       }
     }
