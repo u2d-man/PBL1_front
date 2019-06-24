@@ -116,9 +116,18 @@
             change_param += '&user_street_address='+ change_address;
             change_param += '&old_password='+ pass +'&new_password='+ pass;
             apiResponse('PUT',apiURI,'',change_param,function(data) {});
-            setTimeout(function() {
-              window.location.href = 'mypage.html';
-            }, 500);
+            //同期処理
+            apiResponse('POST',apiURI,'','',function(check){
+              check_point = check.cumulative_points;
+              check_name = check.user_name;
+              check_id = check.user_id;
+              check_email = check.user_email;
+              check_address = check.user_street_address;
+              check_pass = check.user_password;
+              if(check_name == change_name && check_email == change_email && check_address == change_email && check_pass == change_pass){
+                window.location.href = 'mypage.html';
+              }
+            });
           } else {
             alert('現在のパスワードが間違っています。');
           }
