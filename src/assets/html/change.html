@@ -37,18 +37,18 @@
       <h3>ユーザー情報の変更</h3>
       <form id="change"><table align="center" style="font-size: 20px;">
         <tr><td align="right" style="width:500px;">名前</td>
-          <td>：</td><td align="left"><div id="name"><input type="text" style="width:250px;"></input></div></td></tr>
+          <td>：</td><td align="left"><div id="name"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">Ｅメール</td>
-          <td>：</td><td align="left"><div id="email"><input type="text" style="width:250px;"></input></div></td></tr>
+          <td>：</td><td align="left"><div id="email"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">お届け先</td>
           <td>：</td><td align="left"><div id="address"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">新しいパスワード</td>
-          <td>：</td><td align="left"><input type="password" id="new_pass" style="width:250px;"></input></td></tr>
+          <td>：</td><td align="left"><input type="password" id="new_pass" style="width:500px;"></input></td></tr>
         <tr><td align="right">新しいパスワード<br>(再入力)　　</td>
-          <td>：</td><td align="left"><input type="password" id="new_pass2" style="width:250px;"></input></td></tr>
+          <td>：</td><td align="left"><input type="password" id="new_pass2" style="width:500px;"></input></td></tr>
         <tr><td colspan="3">　</td></tr>
         <tr><td align="right">現在のパスワード</td>
-          <td>：</td><td align="left"><input type="password" id="old_pass" style="width:250px;"></input></td></tr>
+          <td>：</td><td align="left"><input type="password" id="old_pass" style="width:500px;"></input></td></tr>
       </table></form><br><br><br>
       <button type="button" onclick="change()" class="btn btn-primary" align="center">　変更内容を保存　</button><br><br>
       <button type="button" onclick="location.href='mypage.html'" class="btn btn-primary">　キャンセル　</button>
@@ -76,9 +76,9 @@
           pass = data.user_password;
         //出力部
           var doc_name = document.getElementById("name");
-          doc_name.innerHTML= '<input type="text" id="dis_name" value="'+ api_name +'" style="width:250px;"></input>'
+          doc_name.innerHTML= '<input type="text" id="dis_name" value="'+ api_name +'" style="width:500px;"></input>'
           var doc_email = document.getElementById("email");
-          doc_email.innerHTML= '<input type="text" id="dis_email" value="'+ api_email +'" style="width:250px;"></input>';
+          doc_email.innerHTML= '<input type="text" id="dis_email" value="'+ api_email +'" style="width:500px;"></input>';
           var doc_address = document.getElementById("address");
           doc_address.innerHTML= '<input type="text" id="dis_address" value="'+ api_address +'" style="width:500px;"></input>';
           console.log(pass);
