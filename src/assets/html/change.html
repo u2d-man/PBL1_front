@@ -30,13 +30,13 @@
   <script src="../js/apiRequest.js"></script>
 
   <section class="section-content bg padding-y border-top">
-  <div class="container">
-  <div class="row">
-	<main class="col-sm-9">
+  <div>
+  <div>
+	<main>
     <div align="center" style="text-align: center;">
       <h3>ユーザー情報の変更</h3>
       <form id="change"><table align="center" style="font-size: 20px;">
-        <tr><td align="right" style="width:500px;">名前</td>
+        <tr><td align="right">名前</td>
           <td>：</td><td align="left"><div id="name"><input type="text" style="width:500px;"></input></div></td></tr>
         <tr><td align="right">Ｅメール</td>
           <td>：</td><td align="left"><div id="email"><input type="text" style="width:500px;"></input></div></td></tr>
@@ -62,9 +62,9 @@
     apiURI = 'http://54.238.92.95:8080/api/v1/mypage';
     user_id = sessionStorage.getItem('user_id');
     pass = '';
+    mypage_key = '';
+    mypage_param = 'user_id=' + user_id;
     window.onload = function mypage() {
-        mypage_key = '';
-        mypage_param = 'user_id=' + user_id;
         apiResponse('POST',apiURI,mypage_key,mypage_param,function(data) {
           console.log(data);
         //受け取るデータ
@@ -96,14 +96,25 @@
       if (change_name != "" && change_email != "" && change_address != "" && change_old_pass != "") {
         if (change_pass != "" || change_pass2 != "") {
           if (change_pass == change_pass2) {
+            //パス変更あり
             if (change_old_pass == pass) {
               change_param += 'user_id='+ user_id +'&user_name='+ change_name +'&user_email='+ change_email;
               change_param += '&user_street_address='+ change_address;
               change_param += '&old_password='+ pass +'&new_password='+ change_pass;
               apiResponse('PUT',apiURI,'',change_param,function(data) {});
-              setTimeout(function() {
-                window.location.href = 'mypage.html';
-              }, 500);
+              console.log(data);
+              //同期処理
+              apiResponse('POST',apiURI,mypage_key,mypage_param,function(check){
+                check_point = check.cumulative_points;
+                check_name = check.user_name;
+                check_id = check.user_id;
+                check_email = check.user_email;
+                check_address = check.user_street_address;
+                check_pass = check.user_password;
+                if(check_name == change_name && check_email == change_email && check_address == change_address && check_pass == change_pass){
+                  window.location.href = 'mypage.html';
+                }
+              });
             } else {
               alert('現在のパスワードが間違っています。');
             }
@@ -111,20 +122,20 @@
             alert('再入力されたパスワードが間違っています。');
           }
         } else {
+          //パス変更なし
           if (change_old_pass == pass) {
             change_param += 'user_id='+ user_id +'&user_name='+ change_name +'&user_email='+ change_email;
             change_param += '&user_street_address='+ change_address;
             change_param += '&old_password='+ pass +'&new_password='+ pass;
             apiResponse('PUT',apiURI,'',change_param,function(data) {});
             //同期処理
-            apiResponse('POST',apiURI,'','',function(check){
+            apiResponse('POST',apiURI,mypage_key,mypage_param,function(check){
               check_point = check.cumulative_points;
               check_name = check.user_name;
               check_id = check.user_id;
               check_email = check.user_email;
               check_address = check.user_street_address;
-              check_pass = check.user_password;
-              if(check_name == change_name && check_email == change_email && check_address == change_email && check_pass == change_pass){
+              if(check_name == change_name && check_email == change_email && check_address == change_address){
                 window.location.href = 'mypage.html';
               }
             });
