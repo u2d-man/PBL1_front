@@ -33,8 +33,11 @@ function apiResponse(method, endpoint, key, parameters, callback) {
                         // コールバック
                         callback(response_data[key]);
                     }
+                } else if(request.status == 401) {
+                  alert("パスワードが間違っています");
+                  console.log( 'Failed. HttpStatus: ' + request.statusText);
                 } else {
-                    console.log( 'Failed. HttpStatus: ' + request.statusText)
+                  console.log( 'Failed. HttpStatus: ' + request.statusText);
                 }
                 break;
         }
