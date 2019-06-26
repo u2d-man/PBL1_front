@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+  <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-</head>
-<body>
+  </head>
+  <body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/apiRequest.js"></script>
-
-    <script>
-        function Judgelogin() {
-            var target = document.getElementById("output");
-            var userid =  document.forms.test.inputId.value;
-            var password = document.forms.test.inputPassword.value;
-            var parameters = 'user_id=' + userid + '&' + 'password=' + password;
-            console.log(parameters);
-
-            apiResponse('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(choice_data) {
-                var isLoginFlag = choice_data;
-                console.log(isLoginFlag);
-
-                if (isLoginFlag) {
-                    sessionStorage.setItem('user_id', userid);
-                    document.location.href = 'home.html';
-                }
-            });
-        }
-    </script>
-<form id="test">
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <form id="test">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Welcome!</h5>
-                        <div class="form-label-group">
-                            <input type="signIn" id="inputId" class="form-control" name="signInId" placeholder="Sign in ID" required autofocus>
-                            <label>sign in ID</label>
-                        </div>
+              <div class="card-body">
+                <h5 class="card-title text-center">Welcome!</h5>
 
-                        <div class="form-label-group">
-                            <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-                            <label for="inputPassword">Password</label>
-                        </div>
-                        <button type="button" onclick="Judgelogin()" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
-                        <hr class="my-4">
+                <div class="form-label-group">
+                  <label>sign in ID</label>
+                  <input type="signIn" id="inputId" class="form-control" name="signInId" placeholder="Sign in ID" required autofocus>
                 </div>
+
+                <div class="form-label-group">
+                  <label for="inputPassword">Password</label>
+                  <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                </div>
+                <p><div id="errMessage"></div></p>
+
+                <button type="button" onclick="Judgelogin()" class="btn btn-lg btn-primary btn-block text-uppercase">Sign in</button>
+                <hr class="my-4">
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-</form>
-</body>
+      </div>
+    </form>
+    <script>
+      function Judgelogin() {
+        var target = document.getElementById("output");
+        var userid =  document.forms.test.inputId.value;
+        var password = document.forms.test.inputPassword.value;
+        var parameters = 'user_id=' + userid + '&' + 'password=' + password;
+        var error = new Error("エラーメッセージ");
+        apiResponse('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(choice_data) {
+          var isLoginFlag = choice_data;
+          console.log(isLoginFlag);
+          if (isLoginFlag) {
+            sessionStorage.setItem('user_id', userid);
+            document.location.href = 'home.html';
+          }
+        });
+      }
+    </script>
+  </body>
 </html>

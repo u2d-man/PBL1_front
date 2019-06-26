@@ -66,7 +66,7 @@ $(document).ready(function() {
 				<div class="col-lg-5 col-sm-9">
 					<form method="GET" action="search.html" class="search-wrap" target="_top">
 						<div class="input-group w-100">
-							<input type="text" class="form-control" name="key" style="width:55%;" placeholder="Search">
+							<input type="text" class="form-control" name="key" style="width:55%;" placeholder="キーワードを入力してください">
 							<select class="custom-select"  name="category_id" id="category">
 							</select>
 							<div class="input-group-append">
@@ -84,6 +84,7 @@ $(document).ready(function() {
 						<div class="icon-wrap"><i class="icon-sm round border fa fa-shopping-cart"></i></div>
 						<div class="text-wrap" id="cart_num">
 							<span class="small badge badge-danger"></span>
+
 							<small>Cart</small>
 						</div>
 					</div>
@@ -92,7 +93,7 @@ $(document).ready(function() {
 					<div class="icontext">
 						<div class="icon-wrap"><i class="icon-sm round border fa fa-user"></i></div>
 						<div class="text-wrap">
-							<small>MyPage</small>
+							<div id="mypage"></div>
 						</div>
 					</div>
 				</a>
@@ -100,7 +101,7 @@ $(document).ready(function() {
 					<div class="icontext">
 						<div class="icon-wrap"><i class="icon-sm round border fas fa-bookmark"></i></div>
 						<div class="text-wrap">
-							<small>BookMark</small>
+							<small>ブックマーク</small>
 						</div>
 					</div>
 				</a>
@@ -128,11 +129,14 @@ $(document).ready(function() {
 </header> <!-- section-header.// -->
 
 <script>
-	apiURI = "http://54.238.92.95:8080/api/v1/categories";
 	user_id = sessionStorage.getItem('user_id');
+	category_apiURI = "http://54.238.92.95:8080/api/v1/categories";
 	cart_apiURI ='http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
-	window.onload = function categorie(){
-		apiResponse('GET',apiURI,'','',function(data){
+	mypage_apiURI = 'http://54.238.92.95:8080/api/v1/mypage';
+	mypage_param = 'user_id=' + user_id;
+	window.onload = function load(){
+		//カテゴリー部分
+		apiResponse('GET',category_apiURI,'','',function(data){
 			category = '';
 			n = 1;
 			data.forEach(function(dat){
@@ -144,20 +148,27 @@ $(document).ready(function() {
 			var doc_categories = document.getElementById("category");
 			doc_categories.innerHTML = category;
 		});
+
+		//カート部分
 		c_num = '';
 		apiResponse('GET',cart_apiURI,'','',function(data){
 			dat = data;
 			num = dat.length;
 
 			if(num == 0){
-				c_num += '<div>Cart</div>';
+				c_num += '<div>カート</div>';
 			}else{
-				c_num += '<span class="small badge badge-danger">'+ num +'</span><div>Cart</div>';
+				c_num += '<span class="small badge badge-danger">'+ num +'</span><div>カート</div>';
 			}
-			console.log(c_num);
 			var num_change = document.getElementById("cart_num");
 			num_change.innerHTML = c_num;
+		});
 
+		//マイページ部分
+		apiResponse('POST',mypage_apiURI,'',mypage_param,function(data) {
+			mypage_disp = '<small>マイページ</small><div>'+ data.user_name +'</div>';
+			var doc_mypage = document.getElementById("mypage");
+			doc_mypage.innerHTML = mypage_disp;
 		});
 
 	}
