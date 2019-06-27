@@ -32,35 +32,50 @@
 
 <!-- custom javascript -->
 <script src="../js/bootstrap_js/script.js" type="text/javascript"></script>
+<script src="../js/apiRequest.js" type="text/javascript"></script>
 
 <iframe src="header.html" width="100%" height="113px"></iframe>
 
 <!-- ========================= SECTION MAIN ========================= -->
 <section class="section-main bg padding-top-sm">
 <div class="container">
-
 <div class="row row-sm">
 	<aside class="col-md-3">
+		<div class="card">
+			<header class="card-header bg-secondary white">
+				<i class="icon-menu"></i>カテゴリー
+			</header>
+			<ul class="menu-category">
+				<div id="category_list"></div>
+			</ul>
+		</div> <!-- card.// -->
 	</aside> <!-- col.// -->
 	<div class="col-md-6">
 <div class="card">
 	<div class="card-body">
 <!-- ================= main slide ================= -->
 <div class="owl-init slider-main owl-carousel" data-items="1" data-nav="true" data-dots="false">
-	<div class="item-slide">
-		<img src="../images/和食/すき焼き.JPG">
+	<div class="item-slide slide_list_0">
 	</div>
-	<div class="item-slide">
-		<img src="../images/洋食/アヒージョ.jpg">
+	<div class="item-slide slide_list_1">
 	</div>
-	<div class="item-slide">
-		<img src="../images/中華/炒飯.jpg">
+	<div class="item-slide slide_list_2">
 	</div>
 </div>
 <!-- ============== main slidesow .end // ============= -->
 	</div> <!-- card-body .// -->
 </div> <!-- card.// -->
 	</div> <!-- col.// -->
+	<aside class="col-md-3">
+	<div class="card bg-white h-100 d-flex flex-column">
+		<header class="card-header bg-secondary white">
+			<i class="icon-menu"></i>注文履歴
+		</header>
+		<ul class="menu-category">
+			<div id="history_list"></div>
+		</ul>
+	</div>
+	</aside>
 
 </div>
 </div> <!-- container .//  -->
@@ -75,43 +90,22 @@
 	<div class="card-body">
 
 <header class="section-heading">
-<h3 class="title-section">Main section is here</h3>
+<h3 class="title-section" align="center">キガヘラご利用の皆様へ</h3>
 </header>
 
 <article>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p>Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<table align="center"><tr><td><p>キガヘラでは賞味期限・消費期限が近い商品をご提供させていただいておりますのでお早めにお召し上がりください。<br>
+キガヘラでは期限が迫っていることもあり通常割引になる商品を定価にて販売し、差額分を寄付に充てております。<br>
+又、カートから材料を削除された際に金額が安くなることはなく料理の金額をお支払いいただいておりますが、<br>
+削除された材料費に関しましても寄付に充てており、その分貢献ポイントを多く入手できるようになっております。<br>
+ご理解・ご協力のほどよろしくお願いいたします。</p>
 
+<p>今も多くの子供達が飢餓に苦しみ、その尊い命を落としています。我々はそんな子供達を飢餓から救いたいと考えています。<br>
+そのためには皆様の温かいご協力は不可欠であり、その温かいご支援が多くの命を救う力となります。</p>
 
-</article>
-	</div> <!-- card-body .// -->
-</div> <!-- card.// -->
+<p>今後とも皆様の温かいご支援をよろしくお願いいたします。</p></td></tr></table>
 
-<div class="card">
-	<div class="card-body">
-
-<article>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<br><br><br><br>
+<p align="center">キガヘラ製作スタッフ一同</p>
 </article>
 	</div> <!-- card-body .// -->
 </div> <!-- card.// -->
@@ -121,28 +115,95 @@ proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 
 <script>
-user_id = sessionStorage.getItem('user_id');
-console.log(user_id);
+	user_id = sessionStorage.getItem('user_id');
+	category_apiURI = "http://54.238.92.95:8080/api/v1/categories";
+	history_apiURI = 'http://54.238.92.95:8080/api/v1/purchase-histories/users/' + user_id;
+	search_apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/1";
+
+window.onload = function load(){
+	//カテゴリー部分
+	apiResponse('GET',category_apiURI,'','',function(category_data){
+		category_num = 1;
+		category = '';
+		category_data.forEach(function(category_dat){
+			name = category_dat.category_name;
+			category += '<form name="searchwrap'+ category_num +'" action="search.html" method="GET">';
+			category += '<input type="hidden" name="key" value="">';
+			category += '<input type="hidden" name="category_id" value="'+ category_num +'">';
+			category += '</form>';
+			category += '<li onclick="document.searchwrap'+ category_num +'.submit();return false;"><h5><a>'+ name +'</a></h5></li>';
+			category_num += 1;
+		});
+		var doc_categories = document.getElementById("category_list");
+		doc_categories.innerHTML = category;
+	});
+
+	//注文履歴部分
+	apiResponse('GET',history_apiURI,'','',function(history_data){
+		history_data.forEach(function(history){
+			history_disp = '';
+			if (history.PurchaseHistoryCards != null) {
+				history_num = 0;
+				history.PurchaseHistoryCards.forEach(function(history_dat){
+					if (history_num <= 3) {
+						history_disp += '<form name="history'+ history_num +'" action="recipe.html" method="GET">';
+						history_disp += '<input type="hidden" name="recipe_id" value="'+ history_dat.recipe_count +'">';
+						history_disp += '</form>';
+						history_disp += '<li><h5><a>'+ history_dat.recipe_name +'</a></h5>';
+						history_disp += '<div align="right"><button class="btn btn-primary round" onclick="document.history'+ history_num +'.submit();return false;">詳しく見る</button>　</div></li>';
+					}
+					history_num += 1;
+				});
+			} else {
+				history_disp += '<a>注文された商品は<br>ありません</a>';
+			}
+		});
+		var doc_history = document.getElementById("history_list");
+		doc_history.innerHTML = history_disp;
+	});
+
+	//スライド部分
+	apiResponse('GET',search_apiURI,'','',function(slide_data){
+		slide_num = 0;
+		console.log(slide_data);
+		var recipes = new Array(slide_data.length);
+		for (var i = 0; i < slide_data.length; i++) {
+			recipes[i] = slide_data[i].recipe_id;
+		}
+		for (var j = recipes.length - 1; j >= 0; j--){
+		  // 0~iのランダムな数値を取得
+		  var rand = Math.floor( Math.random() * ( j + 1 ) );
+		  // 配列の数値を入れ替える
+		  [recipes[j], recipes[rand]] = [recipes[rand], recipes[j]]
+		}
+
+		slide_data.forEach(function(slide_dat){
+			if (slide_num < 3) {
+				slide_disp = '';
+				slide_disp += '<form name="slide'+ slide_num +'" action="recipe.html" method="GET">';
+				slide_disp += '<input type="hidden" name="recipe_id" value="'+ slide_data[slide_num].recipe_id +'">';
+				slide_disp += '</form>';
+				slide_disp += '<img src="'+ slide_data[slide_num].recipe_image_url +'">';
+				slide_list_ = "item-slide slide_list_" + slide_num;
+				var doc_slide = document.getElementsByClassName(slide_list_);
+				switch (slide_num) {
+					case 1:
+						doc_slide[0].innerHTML = slide_disp;
+						doc_slide[1].innerHTML = slide_disp;
+						doc_slide[2].innerHTML = slide_disp;
+						break;
+					case 0:
+					case 2:
+						doc_slide[0].innerHTML = slide_disp;
+						doc_slide[1].innerHTML = slide_disp;
+						break;
+				}
+				slide_num += 1;
+			}
+		});
+	});
+}
 </script>
-
-<!-- ========================= FOOTER ========================= -->
-<footer class="section-footer bg2">
-	<div class="container">
-		<section class="footer-bottom row">
-			<div class="col-sm-6">
-				<p> Made with C.</p>
-			</div>
-			<div class="col-sm-6">
-				<p class="text-sm-right">
-Copyright &copy 2018 <br>
-<a href="http://bootstrap-ecommerce.com">Bootstrap-ecommerce UI kit</a>
-				</p>
-			</div>
-		</section> <!-- //footer-top -->
-	</div><!-- //container -->
-</footer>
-<!-- ========================= FOOTER END // ========================= -->
-
 
 </body>
 </html>
