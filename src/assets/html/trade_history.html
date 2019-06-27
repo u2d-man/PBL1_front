@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+
+    <title>購入履歴</title>
+
+    <!-- jQuery -->
+    <script src="../js/bootstrap_js/jquery-2.0.0.min.js" type="text/javascript"></script>
+
+    <!-- Bootstrap4 files-->
+    <script src="../js/bootstrap_js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="../css/bootstrap_css/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Font awesome 5 -->
+    <link href="../fonts/bootstrap_fonts/fontawesome/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+
+    <!-- custom style -->
+    <link href="../css/bootstrap_css/ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/bootstrap_css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+
+    <!-- custom javascript -->
+    <script src="../js/bootstrap_js/script.js" type="text/javascript"></script>
+    <script src="../js/apiRequest.js"></script>
+
+    <iframe src="header.html" width="100%" height="113px"></iframe>
+
+    <section class="section-content bg padding-y border-top">
+      <div class="container">
+        <button class="btn" onclick="location.href='history.html'"><h3>購入履歴</h3></button>
+        <button class="btn btn-primary" ><h3>ポイント交換履歴</h3></button>
+        <div class="row">
+	        <main class="col-sm-9">
+
+            <div id="history_card"></div>
+
+	        </main> <!-- col.// -->
+          <aside class="col-sm-3">
+            <dl class="dlist-align h4">
+              <dt>合計：</dt>
+              <dd class="text-right"><strong><div id="total_point"></div></strong></dd>
+            </dl>
+            <hr>
+          </aside>
+        </div>
+      </div> <!-- container .//  -->
+    </section>
+
+    <script>
+      user_id = sessionStorage.getItem('user_id');
+      apiURI = 'http://54.238.92.95:8080/api/v1/purchase-histories/users/' + user_id;
+      window.onload = function history() {
+        apiResponse('GET',apiURI,'','',function(data){
+          data.forEach(function(history){
+            var cart = '';
+            var history_date = history.date;
+            var total_price = history.total_price;
+            var total_point = history.total_point;
+            cart += '<div class="card"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted">';
+            cart += '<tr><th scope="col">交換日：' + history_date + '</th>';
+            cart += '<th scope="col" width="120"></th><th scope="col" width="120"></th><th scope="col" width="120"></th></tr></thead>';
+
+            history.PurchaseHistoryCards.forEach(function(recipe){
+              recipe_name = recipe.recipe_name;
+              recipe_count = recipe.recipe_count;
+              recipe_image_url = recipe.recipe_image_url;
+              recipe_price = recipe.price;
+              recipe_point = recipe.point;
+              cart += '<tbody><tr><td><figure class="media"><div class="img-wrap"><img src="' + recipe_image_url + '" class="img-thumbna il img-sm"></div>';
+              cart += '<figcaption class="media-body"><h6 class="title text-truncate">' + recipe_name+ '</h6>';
+              cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + recipe_point + '</dd></dl>';
+              cart += '<td class="text-muted">';
+
+              cart += '</td><td class="text-muted">';
+              cart += '</td><td class="text-muted">';
+              cart += '</td>';
+            });
+            cart += '</tr></tbody></table></div>';
+
+            var doc_history_card = document.getElementById("history_card");
+            doc_history_card.innerHTML = cart; //card部分表示
+            var doc_total_point = document.getElementById("total_point");
+            doc_total_point.innerHTML = total_point + " P";
+          });
+        });
+      };
+    </script>
+  </body>
+</html>

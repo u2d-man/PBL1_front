@@ -194,8 +194,7 @@
 		function buy() {
 			apiResponse('POST',buy_apiURI,'',buy_param,function(data){
 				if (data == null) {
-					alert('購入しました');
-					location.reload();
+					document.location.href = 'purchase.html';
 				}
 			});
 		}
