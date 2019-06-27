@@ -66,16 +66,17 @@
 	</div> <!-- card-body .// -->
 </div> <!-- card.// -->
 	</div> <!-- col.// -->
+
 	<aside class="col-md-3">
-	<div class="card bg-white h-100 d-flex flex-column">
-		<header class="card-header bg-secondary white">
-			<i class="icon-menu"></i>注文履歴
-		</header>
-		<ul class="menu-category">
-			<div id="history_list"></div>
-		</ul>
-	</div>
-	</aside>
+		<div class="card">
+			<header class="card-header bg-secondary white">
+				<i class="icon-menu"></i>注文履歴
+			</header>
+			<ul class="menu-category">
+				<div id="history_list"></div>
+			</ul>
+		</div> <!-- card.// -->
+	</aside> <!-- col.// -->
 
 </div>
 </div> <!-- container .//  -->
@@ -131,7 +132,7 @@ window.onload = function load(){
 			category += '<input type="hidden" name="key" value="">';
 			category += '<input type="hidden" name="category_id" value="'+ category_num +'">';
 			category += '</form>';
-			category += '<li onclick="document.searchwrap'+ category_num +'.submit();return false;"><h5><a>'+ name +'</a></h5></li>';
+			category += '<li onclick="document.searchwrap'+ category_num +'.submit();return false;"><h5><a href="#">'+ name +'</a></h5></li>';
 			category_num += 1;
 		});
 		var doc_categories = document.getElementById("category_list");
@@ -149,13 +150,13 @@ window.onload = function load(){
 						history_disp += '<form name="history'+ history_num +'" action="recipe.html" method="GET">';
 						history_disp += '<input type="hidden" name="recipe_id" value="'+ history_dat.recipe_count +'">';
 						history_disp += '</form>';
-						history_disp += '<li><h5><a>'+ history_dat.recipe_name +'</a></h5>';
+						history_disp += '<li><h5><a>　'+ history_dat.recipe_name +'</a></h5>';
 						history_disp += '<div align="right"><button class="btn btn-primary round" onclick="document.history'+ history_num +'.submit();return false;">詳しく見る</button>　</div></li>';
 					}
 					history_num += 1;
 				});
 			} else {
-				history_disp += '<a>注文された商品は<br>ありません</a>';
+				history_disp += '<li><a>注文された商品は<br>ありません</a></li>';
 			}
 		});
 		var doc_history = document.getElementById("history_list");
@@ -171,19 +172,16 @@ window.onload = function load(){
 			recipes[i] = slide_data[i].recipe_id;
 		}
 		for (var j = recipes.length - 1; j >= 0; j--){
-		  // 0~iのランダムな数値を取得
 		  var rand = Math.floor( Math.random() * ( j + 1 ) );
-		  // 配列の数値を入れ替える
 		  [recipes[j], recipes[rand]] = [recipes[rand], recipes[j]]
 		}
-
 		slide_data.forEach(function(slide_dat){
 			if (slide_num < 3) {
 				slide_disp = '';
 				slide_disp += '<form name="slide'+ slide_num +'" action="recipe.html" method="GET">';
 				slide_disp += '<input type="hidden" name="recipe_id" value="'+ slide_data[slide_num].recipe_id +'">';
+				slide_disp += '<button><img src="'+ slide_data[slide_num].recipe_image_url +'"></button>';
 				slide_disp += '</form>';
-				slide_disp += '<img src="'+ slide_data[slide_num].recipe_image_url +'">';
 				slide_list_ = "item-slide slide_list_" + slide_num;
 				var doc_slide = document.getElementsByClassName(slide_list_);
 				switch (slide_num) {
