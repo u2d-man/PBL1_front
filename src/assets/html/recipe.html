@@ -73,7 +73,7 @@
 
                       </form>
                       <a>　　　　　　　　</a>
-                      <input class="btn btn-primary" type="button" onClick="add_to_cart()" value="　カートに追加　">
+                      <input class="btn btn-primary" type="button" onClick="checker()" value="　カートに追加　">
                       <!-- ブックマーク用のボタンを用意 -->
                       <button class="btn btn-primary" type="submit">
                         <div id="bookmark"></div><i class="fas fa-star"></i>
@@ -107,6 +107,7 @@
         recipe_apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
         cart_add_param = 'user_id='+ user_id + '&' + 'recipe_id=' + recipenum;
         cart_add_apiURI = 'http://54.238.92.95:8080/api/v1/carts';
+        cart_apiURI = 'http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
 
 
         var doc_bookmark = document.getElementById("bookmark");
@@ -173,6 +174,25 @@
           alert('カートに追加しました。');
           window.location.href = 'cart.html';
         }, 250);
+      }
+
+      function checker(){
+        apiResponse('GET',cart_apiURI,'','',function(data){
+          var r_id = '';
+          var num = document.location.search;
+          num = num.substring(11,num.length);
+          data.forEach(function(dat){
+            r_id = dat.recipe_id;
+
+          });
+          console.log(r_id);
+          console.log(num);
+          if(r_id-0 === num-0){
+            alert("この商品はすでにカート内に存在します。");
+          }else{
+            add_to_cart();
+          }
+        });
       }
 
       function flug(){
