@@ -1,148 +1,123 @@
 <!DOCTYPE HTML>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Bootstrap-ecommerce by Vosidiy">
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="cache-control" content="max-age=604800" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="author" content="Bootstrap-ecommerce by Vosidiy">
+    <title>SEARCH</title>
 
-<title>SEARCH</title>
+    <!-- jQuery -->
+    <script src="../js/bootstrap_js/jquery-2.0.0.min.js" type="text/javascript"></script>
 
-<!-- jQuery -->
-<script src="../js/bootstrap_js/jquery-2.0.0.min.js" type="text/javascript"></script>
+    <!-- Bootstrap4 files-->
+    <script src="../js/bootstrap_js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="../css/bootstrap_css/bootstrap.css" rel="stylesheet" type="text/css"/>
 
-<!-- Bootstrap4 files-->
-<script src="../js/bootstrap_js/bootstrap.bundle.min.js" type="text/javascript"></script>
-<link href="../css/bootstrap_css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <!-- Font awesome 5 -->
+    <link href="../fonts/bootstrap_fonts/fontawesome/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
 
-<!-- Font awesome 5 -->
-<link href="../fonts/bootstrap_fonts/fontawesome/css/fontawesome-all.min.css" type="text/css" rel="stylesheet">
+    <!-- custom style -->
+    <link href="../css/bootstrap_css/ui.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/bootstrap_css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
 
-<!-- custom style -->
-<link href="../css/bootstrap_css/ui.css" rel="stylesheet" type="text/css"/>
-<link href="../css/bootstrap_css/responsive.css" rel="stylesheet" media="only screen and (max-width: 1200px)" />
+    <!-- custom javascript -->
+    <script src="../js/bootstrap_js/script.js" type="text/javascript"></script>
+    <script src="../js/apiRequest.js" type="text/javascript"></script>
 
-<!-- custom javascript -->
-<script src="../js/bootstrap_js/script.js" type="text/javascript"></script>
-<script src="../js/apiRequest.js" type="text/javascript"></script>
+    <iframe src="header.html" width="100%" height="113px"></iframe>
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content bg padding-y">
+      <div class="container">
+        <table>
+          <tr>
+            <td><div><h2><div id="disp_search_key"></div></h2><div></td>
+            <td><div><h3>のレシピ　</h3><div></td>
+            <td><div><h4><div id="disp_search_length"></div></h4><div></td>
+          </tr>
+        </table>
+        <div class="row">
+          <main class="col-sm-9" id="search"></main> <!-- col.// -->
+        </div>
+      </div> <!-- container .//  -->
+    </section>
+    <!-- スクリプト記載 -->
+    <script src="../js/apiRequest.js"></script>
+    <script>
+      window.onload = function load_search(){
+        var search_item = decodeURIComponent(location.search.substring(1));
+        var cat_search = search_item.split('&');
+        key_name = cat_search[0].substring(4,cat_search[0].length);
+        category = cat_search[1].substring(12,cat_search[1].length);
 
-<iframe src="header.html" width="100%" height="113px"></iframe>
+        if(key_name != ''){
+          apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/"+ category +"/keys/"+ key_name;
+        }else{
+          apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/"+ category;
+        }
+        c_uri = "http://54.238.92.95:8080/api/v1/categories";
+        apiResponse('GET',apiURI,'','',function(data){
+          search = '';
+          data.forEach(function ( dat ){
+            name = dat.recipe_name;
+            description = dat.recipe_Description;
+            image = dat.recipe_image_url;
+            price = dat.price;
+            point = dat.point;
+            var onflug = false;
 
-<!-- ========================= SECTION PAGETOP ========================= -->
-<!--<section class="section-pagetop bg-secondary">
-<div class="container clearfix">
-	<h2 class="title-page">Page heading</h2>
+            search += '<article class="card card-product"><div class="card-body"><div class="row"><aside class="col-sm-3">';
+            search += '<div class="img-wrap"><img src="'+ image +'"></div>';
+            search += '</aside><article class="col-sm-6">';
+            search += '<h4 class="title">'+ name +'</h4>';
+            search += '<p>'+ description +'</p>';
+            search += '</article><aside class="col-sm-3 border-left"><div class="action-wrap"><div class="price-wrap h4">';
+            search += '<span class="price">'+ price +'円</span> <br>';
+            search += '<span class="price">'+ point +'pt</span></div><br>';
+            search += '<p><form action="recipe.html" method="GET">';
+            search += '<input name="recipe_id" id="recipe_id" value="'+ dat.recipe_id +'" type="hidden">';
+            search += '<input type="submit" class="btn btn-primary" value="レシピ詳細">';
+            search += '</form></p>';
+            search += '<button class="btn btn-primary" type="submit" onClick="flug()">';
+            if(onflug == true){
+              onflug = false;
+              search += '<i class="fas fa-star"></i>';
+            }else{
+              onflug = true;
+              search += '<i class="far fa-star"></i>';
+            }
+            search += '</button></id></div></aside></div></div></article>';
+          });
+          var doc_search = document.getElementById("search");
+          doc_search.innerHTML = search;
+          var doc_disp_search_length = document.getElementById("disp_search_length");
+          doc_disp_search_length.innerHTML = data.length + '品';
+        });
 
-	<nav class="float-left">
-	<ol class="breadcrumb text-white">
-	    <li class="breadcrumb-item"><a href="#">Home</a></li>
-	    <li class="breadcrumb-item"><a href="#">Library</a></li>
-	    <li class="breadcrumb-item active" aria-current="page">Data</li>
-	</ol>
-	</nav>
-</div>
-</section> -->
-<!-- ========================= SECTION INTRO END// ========================= -->
+        n = 1;
+        apiResponse('GET',c_uri,'','',function(data){
+          c_name = '';
+          data.forEach(function(dat){
+            if(n == category-0){
+              c_name = dat.category_name;
+            }
+            n++;
+          });
+          console.log(c_name);
+          var doc_key = document.getElementById("disp_search_key");
+          doc_key.innerHTML = key_name+ "　" + c_name;
+        });
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content bg padding-y">
-<div class="container">
-	<table><tr>
-		<td><div><h2><div id="disp_search_key"></div></h2><div></td>
-		<td><div><h3>のレシピ　</h3><div></td>
-		<td><div><h4><div id="disp_search_length"></div></h4><div></td>
-	</tr></table>
-
-<div class="row">
-
-	<main class="col-sm-9" id="search">
-
-	</main> <!-- col.// -->
-</div>
-
-</div> <!-- container .//  -->
-</section>
-<!-- スクリプト記載 -->
-<script src="../js/apiRequest.js"></script>
-<script>
-	window.onload = function load_search(){
-		var search_item = decodeURIComponent(location.search.substring(1));
-		var cat_search = search_item.split('&');
-		key_name = cat_search[0].substring(4,cat_search[0].length);
-		category = cat_search[1].substring(12,cat_search[1].length);
-
-		if(key_name != ''){
-			apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/"+ category +"/keys/"+ key_name;
-		}else{
-			apiURI = "http://54.238.92.95:8080/api/v1/search-recipes/categories/"+ category;
-		}
-		c_uri = "http://54.238.92.95:8080/api/v1/categories";
-		//document.write(apiURI);
-		apiResponse('GET',apiURI,'','',function(data){
-			search = '';
-			data.forEach(function ( dat ){
-				name = dat.recipe_name;
-				description = dat.recipe_Description;
-				image = dat.recipe_image_url;
-				price = dat.price;
-				point = dat.point;
-
-				search += '<article class="card card-product"><div class="card-body"><div class="row"><aside class="col-sm-3">';
-				search += '<div class="img-wrap"><img src="'+ image +'"></div>';
-				search += '</aside><article class="col-sm-6">';
-				search += '<h4 class="title">'+ name +'</h4>';
-				search += '<p>'+ description +'</p>';
-				search += '</article><aside class="col-sm-3 border-left"><div class="action-wrap"><div class="price-wrap h4">';
-				search += '<span class="price">'+ price +'円</span> <br>';
-				search += '<span class="price">'+ point +'pt</span></div><br>';
-				search += '<p><form action="recipe.html" method="GET">';
-					search += '<input name="recipe_id" id="recipe_id" value="'+ dat.recipe_id +'" type="hidden">';
-    			search += '<input type="submit" class="btn btn-primary" value="レシピ詳細">';
-				search += '</form></p>';
-				search += '<button class="btn btn-primary" type="submit" onClick=""><i class="fas fa-star"></i></button><id></div>';
-				search += '</aside></div></div></article>';
-			});
-			var doc_search = document.getElementById("search");
-			doc_search.innerHTML = search;
-			var doc_disp_search_length = document.getElementById("disp_search_length");
-			doc_disp_search_length.innerHTML = data.length + '品';
-		});
-		n = 1;
-		apiResponse('GET',c_uri,'','',function(data){
-			c_name = '';
-			data.forEach(function(dat){
-				if(n == category-0){
-					c_name = dat.category_name;
-				}
-				n++;
-			});
-			console.log(c_name);
-			var doc_key = document.getElementById("disp_search_key");
-			doc_key.innerHTML = key_name+ "　" + c_name;
-		});
-
-
-	}
-
-</script>
-<footer class="section-footer bg-secondary">
-	<div class="container">
-		<section class="footer-bottom row border-top-white">
-			<div class="col-sm-6">
-				<p class="text-white-50"> Made with C. <br></p>
-			</div>
-			<div class="col-sm-6 text-right">
-				<p class="text-sm-right text-white-50">
-	Copyright &copy 2018 <br>
-<a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
-				</p>
-			</div>
-		</section> <!-- //footer-top -->
-	</div><!-- //container -->
-</footer>
-<!-- ========================= FOOTER END // ========================= -->
-
-
-</body>
+        function flug(){
+          var bm_URI = 'http://54.238.92.95:8080/api/v1/bookmark';
+          var user_id = sessionStorage.getItem('user_id');
+          var recipe_id = sessionStorage.getItem('recipe_id');
+          var parameters = 'user_id=' + user_id + '&recipe_id=' + recipe_id;
+          apiResponse('POST',bm_URI,'is_admin',parameters,'');
+        }
+      }
+    </script>
+  </body>
 </html>
