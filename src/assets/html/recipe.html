@@ -182,12 +182,17 @@
           var num = document.location.search;
           num = num.substring(11,num.length);
           data.forEach(function(dat){
-            r_id = dat.recipe_id;
-
+            r_id += dat.recipe_id;
           });
           console.log(r_id);
-          console.log(num);
-          if(r_id-0 === num-0){
+          flag = 0;
+          for(var i = 0; i < r_id.length; i++){
+            if(r_id[i]-0 === num-0){
+              flag = 1;
+              break;
+            }
+          }
+          if(flag === 1){
             alert("この商品はすでにカート内に存在します。");
           }else{
             add_to_cart();
