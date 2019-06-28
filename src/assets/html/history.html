@@ -42,12 +42,12 @@
           <aside class="col-sm-3">
             <dl class="dlist-align h4">
               <dt>合計：</dt>
-              <dd class="text-right"><strong><div id="total_price"></div></strong></dd>
+              <dd class="text-right"><strong><div id="total_price">0円</div></strong></dd>
             </dl>
             <hr>
             <dl class="dlist-align h4">
               <dt>合計：</dt>
-              <dd class="text-right"><strong><div id="total_point"></div></strong></dd>
+              <dd class="text-right"><strong><div id="total_point">0 P</div></strong></dd>
             </dl>
             <hr>
           </aside>
@@ -60,6 +60,7 @@
       apiURI = 'http://54.238.92.95:8080/api/v1/purchase-histories/users/' + user_id;
       window.onload = function history() {
         apiResponse('GET',apiURI,'','',function(data){
+          console.log(data);
           data.forEach(function(history){
             var cart = '';
             var history_date = history.date;
@@ -68,44 +69,52 @@
             cart += '<div class="card"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted">';
             cart += '<tr><th scope="col">購入日：' + history_date + '</th>';
             cart += '<th scope="col" width="120">食材</th><th scope="col" width="120">数量</th><th scope="col" width="120">人数分</th></tr></thead>';
+            if (history.PurchaseHistoryCards != null) {
+              history.PurchaseHistoryCards.forEach(function(recipe){
+                recipe_name = recipe.recipe_name;
+                recipe_count = recipe.recipe_count;
+                recipe_image_url = recipe.recipe_image_url;
+                recipe_price = recipe.price;
+                recipe_point = recipe.point;
+                cart += '<tbody><tr><td><figure class="media"><div class="img-wrap"><img src="' + recipe_image_url + '" class="img-thumbna il img-sm"></div>';
+                cart += '<figcaption class="media-body"><h6 class="title text-truncate">' + recipe_name+ '</h6>';
+                cart += '<dl class="dlist-inline small"><dt>金額　　：</dt><dd>' + recipe_price + '</dd></dl>';
+                cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + recipe_point + '</dd></dl>';
+                cart += '<dl class="dlist-inline small"><dt>' + recipe_count + '</dt><dd>人前</dd></dl></figcaption></figure></td>';
+                cart += '<td class="text-muted">';
 
-            history.PurchaseHistoryCards.forEach(function(recipe){
-              recipe_name = recipe.recipe_name;
-              recipe_count = recipe.recipe_count;
-              recipe_image_url = recipe.recipe_image_url;
-              recipe_price = recipe.price;
-              recipe_point = recipe.point;
-              cart += '<tbody><tr><td><figure class="media"><div class="img-wrap"><img src="' + recipe_image_url + '" class="img-thumbna il img-sm"></div>';
-              cart += '<figcaption class="media-body"><h6 class="title text-truncate">' + recipe_name+ '</h6>';
-              cart += '<dl class="dlist-inline small"><dt>金額　　：</dt><dd>' + recipe_price + '</dd></dl>';
-              cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + recipe_point + '</dd></dl>';
-              cart += '<dl class="dlist-inline small"><dt>' + recipe_count + '</dt><dd>人前</dd></dl></figcaption></figure></td>';
-              cart += '<td class="text-muted">';
+                recipe.foods.forEach(function(details){
+                  food_name = details.food_name;
+                  cart += '<p>' + food_name + '</p>';
+                });
+                cart += '</td><td class="text-muted">';
+                recipe.foods.forEach(function(details){
+                  food_quantity = details.food_quantity;
+                  cart += '<p>' + food_quantity + '</p>';
+                });
+                cart += '</td><td class="text-muted">';
+                recipe.foods.forEach(function(details){
+                  food_count = details.food_count;
+                  cart += '<p>' + food_count + '</p>';
+                });
+                cart += '</td>';
+              });
+              cart += '</tr></tbody></table></div>';
 
-              recipe.foods.forEach(function(details){
-                food_name = details.food_name;
-                cart += '<p>' + food_name + '</p>';
-              });
-              cart += '</td><td class="text-muted">';
-              recipe.foods.forEach(function(details){
-                food_quantity = details.food_quantity;
-                cart += '<p>' + food_quantity + '</p>';
-              });
-              cart += '</td><td class="text-muted">';
-              recipe.foods.forEach(function(details){
-                food_count = details.food_count;
-                cart += '<p>' + food_count + '</p>';
-              });
-              cart += '</td>';
-            });
-            cart += '</tr></tbody></table></div>';
-
-            var doc_history_card = document.getElementById("history_card");
-            doc_history_card.innerHTML = cart; //card部分表示
-            var doc_total_price = document.getElementById("total_price");
-            doc_total_price.innerHTML = total_price + "円";
-            var doc_total_point = document.getElementById("total_point");
-            doc_total_point.innerHTML = total_point + " P";
+              var doc_history_card = document.getElementById("history_card");
+              doc_history_card.innerHTML = cart; //card部分表示
+              var doc_total_price = document.getElementById("total_price");
+              doc_total_price.innerHTML = total_price + "円";
+              var doc_total_point = document.getElementById("total_point");
+              doc_total_point.innerHTML = total_point + " P";
+            }else{
+              var doc_history_card = document.getElementById("history_card");
+              doc_history_card.innerHTML = '<br><h3>交換された品物はありません。</h3>';
+              var doc_total_price = document.getElementById("total_price");
+              doc_total_price.innerHTML = "0円";
+              var doc_total_point = document.getElementById("total_point");
+              doc_total_point.innerHTML = "0 P";
+            }
           });
         });
       };
