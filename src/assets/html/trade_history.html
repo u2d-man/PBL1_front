@@ -41,8 +41,11 @@
 	        </main> <!-- col.// -->
           <aside class="col-sm-3">
             <dl class="dlist-align h4">
-              <dt>合計：</dt>
-              <dd class="text-right"><strong><div id="total_point">0 P</div></strong></dd>
+              <table><tr>
+                <dt><td><h6>使用したポイント</h6></td>
+                <td>：</td></dt>
+                <td><dd><strong><div id="total_point">0</div></strong></td><td>P</td></dd>
+              </tr></table>
             </dl>
             <hr>
           </aside>
@@ -85,7 +88,7 @@
             var doc_history_card = document.getElementById("history_card");
             doc_history_card.innerHTML = cart; //card部分表示
             var doc_total_point = document.getElementById("total_point");
-            doc_total_point.innerHTML = total_point + " P";
+            doc_total_point.innerHTML = total_point;
           }else{
             var doc_history_card = document.getElementById("history_card");
             doc_history_card.innerHTML = '<br><h3>交換された品物はありません。</h3>'; //card部分表示
