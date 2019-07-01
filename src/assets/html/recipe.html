@@ -36,7 +36,8 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="../js/apiRequest.js"></script>
-
+  </head>
+  <body>
     <section class="section-content bg padding-y-sm">
       <div class="container">
         <div class="row">
@@ -75,8 +76,8 @@
                       <a>　　　　　　　　</a>
                       <input class="btn btn-primary" type="button" onClick="checker()" value="　カートに追加　">
                       <!-- ブックマーク用のボタンを用意 -->
-                      <button class="btn btn-primary" type="submit">
-                        <div id="bookmark"></div><i class="fas fa-star"></i>
+                      <button class="btn btn-primary" type="submit" onClick="flug()">
+                        <div id="bookmark"></div>
                       </button>
                     </div>
                   </article> <!-- card-body.// -->
@@ -100,25 +101,18 @@
 
     <script>
       window.onload = function load_recipe() {
-
-        var recipenum = document.location.search;
-        recipenum = recipenum.substring(11,recipenum.length);
+        judge = false;
+        var recipenum_seach = document.location.search;
+        recipenum = recipenum_seach.substring(11,recipenum_seach.length);
         user_id = sessionStorage.getItem('user_id');
         recipe_apiURI = 'http://54.238.92.95:8080/api/v2/recipes/' + recipenum;
         cart_add_param = 'user_id='+ user_id + '&' + 'recipe_id=' + recipenum;
         cart_add_apiURI = 'http://54.238.92.95:8080/api/v1/carts';
         cart_apiURI = 'http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
+        bm_get_apiURI = 'http://54.238.92.95:8080/api/v1/bookmark/users/' + user_id;
+        bm_param = 'user_id=' + user_id; 
+        bm_pos_del_URI = 'http://54.238.92.95:8080/api/v1/bookmark';
 
-
-        var doc_bookmark = document.getElementById("bookmark");
-        var onflug = false;
-        if(onflug = false){
-          onflug = true;
-          doc_bookmark.innerHTML = '<i class="fas fa-star"></i>';
-        }else{
-          onflug = false;
-          doc_bookmark.innerHTML = '<i class="far fa-star"></i>';
-        }
         apiResponse('GET', recipe_apiURI, '', '', function (data) {
           // レシピの名前を表示させる処理
           document.title = data.recipe_name;
@@ -155,16 +149,36 @@
           food_process = food_process + pronum + '.　' + '作り方1<hr>';
           pronum += 1;
           food_process = food_process + pronum + '.　' + '作り方2<hr>';
-          /*
-      recipe_process = data.recipe_process;
-      recipe_process.forEach(function( rprocess ){
-      pronum += 1;
-      food_process = food_process + pronum + '.' + rprocess.prosess +'<hr>';
-    });
-           */
+        /*
+          recipe_process = data.recipe_process;
+          recipe_process.forEach(function( rprocess ){
+            pronum += 1;
+            food_process = food_process + pronum + '.' + rprocess.prosess +'<hr>';
+          }
+        });
+        */
           var docpro = document.getElementById("recipe_process");
           docpro.innerHTML = food_process;
           // レシピの作り方を表示させる処理終了
+
+          // ブックマーク部分
+          bm = document.getElementById("bookmark");
+          bm.innerHTML = '<i class="far fa-star"></i>';
+        });
+        // ブックマークにすでに登録されているかの判定
+        apiResponse('GET',bm_get_apiURI,'',bm_param,function(data){
+          var flug = false;
+          data.forEach(function(id){
+            bm_recipe_id = id.recipe_id;
+            if(bm_recipe_id == recipenum){
+              flug = true;
+            }
+          });
+          if(flug == true){
+            bm.innerHTML = '<i class="fas fa-star"></i>';
+          }else{
+            bm.innerHTML = '<i class="far fa-star"></i>';
+          }
         });
       }
 
@@ -201,12 +215,18 @@
       }
 
       function flug(){
-        var bm_URI = 'http://54.238.92.95:8080/api/v1/bookmark';
-        var user_id = sessionStorage.getItem('user_id');
-        var recipe_id = sessionStorage.getItem('recipe_id');
-        var parameters = 'user_id=' + user_id + '&recipe_id' + recipe_id;
-        apiResponse('POST',bm_URI,'is_admin',parameters,'');
-      }
+        var parameters = 'user_id=' + user_id + '&recipe_id=' + recipenum;
+        if(judge == false){
+            bm.innerHTML = '<i class="far fa-star"></i>';
+            apiResponse('POST',bm_pos_del_URI,'',parameters,function(data){});
+            judge = true;
+        }else{
+            bm.innerHTML = '<i class="fas fa-star"></i>';
+            apiResponse('DELETE',bm_pos_del_URI,'',parameters,function(data){});
+            judge = false;
+        }
+        
+      };
     </script>
   </body>
 </html>
