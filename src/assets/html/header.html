@@ -156,6 +156,10 @@ $(document).ready(function() {
 			dat = data;
 			num = dat.length;
 
+			if(user_id == null){
+				num = 0;
+			}
+
 			if(num == 0){
 				c_num += '<div>カート</div>';
 			}else{
@@ -167,7 +171,11 @@ $(document).ready(function() {
 
 		//マイページ部分
 		apiResponse('POST',mypage_apiURI,'',mypage_param,function(data) {
-			mypage_disp = '<small>マイページ</small><div>'+ data.user_name +'</div>';
+			if(user_id == null){
+				mypage_disp = '<small>マイページ</small>';
+			}else{
+				mypage_disp = '<small>マイページ</small><div>'+ data.user_name +'</div>';
+			}
 			var doc_mypage = document.getElementById("mypage");
 			doc_mypage.innerHTML = mypage_disp;
 		});
