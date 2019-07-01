@@ -41,8 +41,11 @@
 	        </main> <!-- col.// -->
           <aside class="col-sm-3">
             <dl class="dlist-align h4">
-              <dt>合計：</dt>
-              <dd class="text-right"><strong><div id="total_point"></div></strong></dd>
+              <table><tr>
+                <dt><td><h6>使用したポイント</h6></td>
+                <td>：</td></dt>
+                <td><dd><strong><div id="total_point">0</div></strong></td><td>P</td></dd>
+              </tr></table>
             </dl>
             <hr>
           </aside>
@@ -52,42 +55,48 @@
 
     <script>
       user_id = sessionStorage.getItem('user_id');
-      apiURI = 'http://54.238.92.95:8080/api/v1/purchase-histories/users/' + user_id;
+      apiURI = 'http://54.238.92.95:8080/api/v1/trade-items-Histories/users/' + user_id;
       window.onload = function history() {
         apiResponse('GET',apiURI,'','',function(data){
-          data.forEach(function(history){
+          if (data.length != 0) {
+            console.log(data);
             var cart = '';
-            var history_date = history.date;
-            var total_price = history.total_price;
-            var total_point = history.total_point;
-            cart += '<div class="card"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted">';
-            cart += '<tr><th scope="col">交換日：' + history_date + '</th>';
-            cart += '<th scope="col" width="120"></th><th scope="col" width="120"></th><th scope="col" width="120"></th></tr></thead>';
+            var total_point = 0;
+            data.forEach(function(history){
+              var date = history.date;
+              cart += '<div class="card"><table class="table table-hover shopping-cart-wrap"><thead class="text-muted">';
+              cart += '<tr><th scope="col">交換日：' + date + '</th>';
+              cart += '<th scope="col" width="120"></th><th scope="col" width="120"></th><th scope="col" width="120"></th></tr></thead>';
 
-            history.PurchaseHistoryCards.forEach(function(recipe){
-              recipe_name = recipe.recipe_name;
-              recipe_count = recipe.recipe_count;
-              recipe_image_url = recipe.recipe_image_url;
-              recipe_price = recipe.price;
-              recipe_point = recipe.point;
-              cart += '<tbody><tr><td><figure class="media"><div class="img-wrap"><img src="' + recipe_image_url + '" class="img-thumbna il img-sm"></div>';
-              cart += '<figcaption class="media-body"><h6 class="title text-truncate">' + recipe_name+ '</h6>';
-              cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + recipe_point + '</dd></dl>';
-              cart += '<td class="text-muted">';
+              history.trade_items.forEach(function(items){
+                trade_name = items.trade_name;
+                trade_image_url = items.trade_image_url;
+                trade_point = items.trade_point;
+                total_point += items.trade_point;
 
-              cart += '</td><td class="text-muted">';
-              cart += '</td><td class="text-muted">';
-              cart += '</td>';
+                cart += '<tbody><tr><td><figure class="media"><div class="img-wrap"><img src="' + trade_image_url + '" class="img-thumbna il img-sm"></div>';
+                cart += '<figcaption class="media-body"><h6 class="title text-truncate">' + trade_name+ '</h6>';
+                cart += '<dl class="dlist-inline small"><dt>ポイント：</dt><dd>' + trade_point + '</dd></dl>';
+                cart += '<td class="text-muted">';
+
+                cart += '</td><td class="text-muted">';
+                cart += '</td><td class="text-muted">';
+                cart += '</td>';
+              });
+              cart += '</tr></tbody></table></div>';
             });
-            cart += '</tr></tbody></table></div>';
-
             var doc_history_card = document.getElementById("history_card");
             doc_history_card.innerHTML = cart; //card部分表示
             var doc_total_point = document.getElementById("total_point");
-            doc_total_point.innerHTML = total_point + " P";
-          });
+            doc_total_point.innerHTML = total_point;
+          }else{
+            var doc_history_card = document.getElementById("history_card");
+            doc_history_card.innerHTML = '<br><h3>交換された品物はありません。</h3>'; //card部分表示
+            var doc_total_point = document.getElementById("total_point");
+            doc_total_point.innerHTML = "0 P";
+          }
         });
-      };
+      }
     </script>
   </body>
 </html>

@@ -35,8 +35,10 @@ function apiResponse(method, endpoint, key, parameters, callback) {
                     }
                 } else if(request.status == 401) {
                   alert("パスワードが間違っています");
+                  callback(request.statusText);
                   console.log( 'Failed. HttpStatus: ' + request.statusText);
                 } else {
+                  callback(request.statusText);
                   console.log( 'Failed. HttpStatus: ' + request.statusText);
                 }
                 break;
@@ -51,4 +53,3 @@ function apiResponse(method, endpoint, key, parameters, callback) {
     // Httpリクエストを送信(引数指定で特定の情報のみを送信)
     request.send(parameters);
 }
-
