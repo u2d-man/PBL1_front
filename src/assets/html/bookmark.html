@@ -87,6 +87,7 @@
 					search += '<input name="recipe_id" id="recipe_id" value="'+ dat.recipe_id +'" type="hidden">';
     			search += '<input type="submit" class="btn btn-primary" value="レシピ詳細">';
 				search += '</form></p>';
+				search += '<button onClick="rm_bookmark('+ dat.recipe_id +')" class="btn btn-primary">ブックマーク解除</button>'
 				//search += '<button class="btn btn-primary" type="submit" onClick=""><i class="fas fa-star"></i></button></div>';
 				search += '</div>';
 				search += '</aside></div></div></article>'
@@ -95,8 +96,17 @@
 			doc_search.innerHTML = search;
 		});
 	}
+	function rm_bookmark(rm_id){
+		rm_apiURI = 'http://54.238.92.95:8080/api/v1/bookmark/users/'+ user_id +'/recipes/'+ rm_id;
+		apiResponse('DELETE',rm_apiURI,'','',function(data){
+			if(data == null){
+				alert('ブックマークを解除しました。');
+				location.reload();
+			}
+		});
+	}
 </script>
-<footer class="section-footer bg-secondary">
+<!--<footer class="section-footer bg-secondary">
 	<div class="container">
 		<section class="footer-bottom row border-top-white">
 			<div class="col-sm-6">
@@ -108,9 +118,9 @@
 <a href="http://bootstrap-ecommerce.com" class="text-white-50">Bootstrap-ecommerce UI kit</a>
 				</p>
 			</div>
-		</section> <!-- //footer-top -->
-	</div><!-- //container -->
-</footer>
+		</section>
+	</div>
+</footer>-->
 <!-- ========================= FOOTER END // ========================= -->
 
 
