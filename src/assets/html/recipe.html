@@ -157,16 +157,15 @@
             data.forEach(function(id){
               bm_recipe_id = id.recipe_id;
               if(bm_recipe_id == recipenum){
-                bm_flug = true;
-                bm.innerHTML = '<i class="fas fa-star"></i>';
-              }else{
                 bm.innerHTML = '<i class="far fa-star"></i>';
+              }else{
+                bm.innerHTML = '<i class="fas fa-star"></i>';
               }
             });
           });
         });
       }
-       
+
       function add_to_cart() {
         apiResponse('POST', cart_add_apiURI, '', cart_add_param, function (cart) {});
         setTimeout(function() {
