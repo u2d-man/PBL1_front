@@ -136,7 +136,12 @@ $(document).ready(function() {
 </header> <!-- section-header.// -->
 
 <script>
-	user_id = sessionStorage.getItem('user_id');
+		if(sessionStorage.getItem('user_id')){
+			user_id = sessionStorage.getItem('user_id');
+		}else{
+			alert('ログインが必要です！');
+			top.window.location.href = 'login.html';
+		}
 	category_apiURI = "http://54.238.92.95:8080/api/v1/categories";
 	cart_apiURI ='http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
 	mypage_apiURI = 'http://54.238.92.95:8080/api/v1/mypage';
@@ -180,7 +185,7 @@ $(document).ready(function() {
 		//マイページ部分
 		apiResponse('POST',mypage_apiURI,'',mypage_param,function(data) {
 			if(user_id == null){
-				mypage_disp = 'マイページ';
+				mypage_disp = '';
 			}else{
 				mypage_disp = data.user_name;
 			}
@@ -195,6 +200,7 @@ $(document).ready(function() {
 		if(result){
 			apiResponse('POST',logout_apiURI,'',logout_param,function(data) {
 				if (data == null) {
+					sessionStorage.removeItem('user_id');
 					alert('ログアウトしました。');
 					top.window.location.href = 'login.html';
 				}
