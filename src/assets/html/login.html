@@ -17,12 +17,12 @@
                 <h5 class="card-title text-center">Welcome!</h5>
 
                 <div class="form-label-group">
-                  <label>sign in ID</label>
+                  <label>ユーザーID</label>
                   <input type="signIn" id="inputId" class="form-control" name="signInId" placeholder="Sign in ID" required autofocus>
                 </div>
 
                 <div class="form-label-group">
-                  <label for="inputPassword">Password</label>
+                  <label for="inputPassword">パスワード</label>
                   <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
                 </div>
                 <p><div id="errMessage"></div></p>
@@ -36,18 +36,27 @@
       </div>
     </form>
     <script>
+      window.onload = function load(){
+        if(sessionStorage.getItem('user_id')){
+          sessionStorage.removeItem('user_id');
+        }
+      }
       function Judgelogin() {
         var target = document.getElementById("output");
         var userid =  document.forms.test.inputId.value;
         var password = document.forms.test.inputPassword.value;
         var parameters = 'user_id=' + userid + '&' + 'password=' + password;
-        var error = new Error("エラーメッセージ");
-        apiResponse('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(choice_data) {
-          var isLoginFlag = choice_data;
+        //var error = new Error("エラーメッセージ");
+        apiResponse('POST', 'http://54.238.92.95:8080/api/v1/auth/login', 'is_admin', parameters, function(data) {
+          var isLoginFlag = '' + data;
           console.log(isLoginFlag);
-          if (isLoginFlag) {
+          if (isLoginFlag == 'true') {
             sessionStorage.setItem('user_id', userid);
             document.location.href = 'home.html';
+          }else if(isLoginFlag == 'Unauthorized'){
+            alert('パスワードが間違っています！');
+          }else{
+            alert('エラー！');
           }
         });
       }

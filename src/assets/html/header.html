@@ -89,14 +89,19 @@ $(document).ready(function() {
 						</div>
 					</div>
 				</a>
-				<a href="mypage.html" class="widget-header mr-1" target="_top">
+				<a href="#" class="widget-header mr-1 nav-link dropdown-toggle" data-toggle="dropdown" target="_top">
 					<div class="icontext">
 						<div class="icon-wrap"><i class="icon-sm round border fa fa-user"></i></div>
 						<div class="text-wrap">
-							<div id="mypage"></div>
+							<small><div id="user_name"></div></small>
 						</div>
 					</div>
 				</a>
+				<ul class="dropdown-menu small">
+					<li><a class="dropdown-item" href="mypage.html" target="_top">マイページ</a></li>
+					<li><a class="dropdown-item" href="#" onclick="logout()">ログアウト</a></li>
+				</ul>
+
 				<a href="bookmark.html" class="widget-header mr-1" target="_top">
 					<div class="icontext">
 						<div class="icon-wrap"><i class="icon-sm round border fas fa-bookmark"></i></div>
@@ -109,7 +114,8 @@ $(document).ready(function() {
 						<div class="icontext">
 							<div class="icon-wrap"><i class="icon-sm round border fas fa-history"></i></div>
 							<div class="text-wrap">
-								<small>注文履歴</small>
+								<small>注文</small>
+								<small>履歴</small>
 							</div>
 						</div>
 					</a>
@@ -130,11 +136,18 @@ $(document).ready(function() {
 </header> <!-- section-header.// -->
 
 <script>
-	user_id = sessionStorage.getItem('user_id');
+		if(sessionStorage.getItem('user_id')){
+			user_id = sessionStorage.getItem('user_id');
+		}else{
+			alert('ログインが必要です！');
+			top.window.location.href = 'login.html';
+		}
 	category_apiURI = "http://54.238.92.95:8080/api/v1/categories";
 	cart_apiURI ='http://54.238.92.95:8080/api/v1/carts/users/' + user_id;
 	mypage_apiURI = 'http://54.238.92.95:8080/api/v1/mypage';
 	mypage_param = 'user_id=' + user_id;
+	logout_apiURI = 'http://54.238.92.95:8080/api/v1/auth/logout';
+	logout_param = 'user_id=' + user_id;
 	window.onload = function load(){
 		//カテゴリー部分
 		apiResponse('GET',category_apiURI,'','',function(data){
@@ -172,13 +185,28 @@ $(document).ready(function() {
 		//マイページ部分
 		apiResponse('POST',mypage_apiURI,'',mypage_param,function(data) {
 			if(user_id == null){
-				mypage_disp = '<small>マイページ</small>';
+				mypage_disp = '';
 			}else{
-				mypage_disp = '<small>マイページ</small><div>'+ data.user_name +'</div>';
+				mypage_disp = data.user_name;
 			}
-			var doc_mypage = document.getElementById("mypage");
+			var doc_mypage = document.getElementById("user_name");
 			doc_mypage.innerHTML = mypage_disp;
 		});
+	}
 
+	//ログアウト部分
+	function logout(){
+		var result = window.confirm('ログアウトしていいですか？');
+		if(result){
+			apiResponse('POST',logout_apiURI,'',logout_param,function(data) {
+				if (data == null) {
+					sessionStorage.removeItem('user_id');
+					alert('ログアウトしました。');
+					top.window.location.href = 'login.html';
+				}
+			});
+		}else{
+			alert('キャンセルしました。');
+		}
 	}
 </script>
